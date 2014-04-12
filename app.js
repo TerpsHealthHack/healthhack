@@ -12,12 +12,12 @@ app.use(express.static(__dirname + '/public'));
 
 io.sockets.on('connection', function (socket) {
     socket.on('send email', function(email) {
-        mail({
-            from: "TerpsHackIt@umd.edu", 
-            to: email.toEmail, 
-            subject: "HERE'S YOUR SCORE!", 
-            text: "Your depression numba is: " + email.healthScore
-        });
+        // mail({
+        //     from: "TerpsHackIt@umd.edu", 
+        //     to: email.toEmail, 
+        //     subject: "HERE'S YOUR SCORE!", 
+        //     text: "Your depression numba is: " + email.healthScore
+        // });
     });
     socket.emit('connected');
 });
