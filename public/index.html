@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<head>
+	<style>
+	</style>
+	<script src='../socket.io/socket.io.js'></script>
+</head>
+<body>
+
+<script>
+var healthScore = 10;
+
+if (io) {
+  var socket = io.connect('/');
+  socket.on('connected', function (res) {
+  	var email = { "toEmail": "alexacgreenberg@gmail.com" ,"healthScore" : healthScore};
+    socket.emit('send email', email);
+  });
+}
+</script>
+</body>
+</html>
