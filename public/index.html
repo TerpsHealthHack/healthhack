@@ -636,11 +636,9 @@ $('#rescheduler-confirm').on('click', function() {
     
     
 //    Chul's experiment
-    $('#rescheduler-confirm').on('click', function() {
-		serverObject.email = $('#email-address').val();
-        serverObject.newTime = email_time;
-	    socket.emit('send-email-reschedule', serverObject);
-	});
+    serverObject.email = $('#email-address').val();
+    serverObject.newTime = email_time;
+    socket.emit('send-email-reschedule', serverObject);
 })
 </script>
     

@@ -86,6 +86,7 @@ io.of('/user').on('connection', function (socket) {
       });
     
     socket.on('send-email-reschedule', function(email) {
+        console.log(email);
         mail({
             from: "HelpfulDoctor@doctors.edu", 
             to: email.email, 
@@ -94,7 +95,7 @@ io.of('/user').on('connection', function (socket) {
             	"! Your appointment has been confirmed. Please arrive at " + 
             	email.newTime,
             html: "<div style='font-size:20px'><b>Hi, " + email.fname + 
-            	"!</b></div><br><br>Your appointment has been confirmed. Please arrive at <br><br>" + 
+            	"!</b></div><br><br>Your appointment has been confirmed. Please arrive at " + 
             	email.newTime
         });
       });
