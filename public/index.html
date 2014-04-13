@@ -81,15 +81,15 @@
 
 </style>
 
+</head>
+<script src='../socket.io/socket.io.js'></script>
 <link rel='stylesheet' type='text/css' href='foundation/css/foundation.css'>
 <script src='http://code.jquery.com/jquery.min.js' type='text/javascript'></script>
 <script src='../socket.io/socket.io.js'></script>
-
 </head>
 
-<script src='../socket.io/socket.io.js'></script>
-</head>
 <body>
+
 
 <div id='name-input'>
 	First name: <br><br><input type='text' name='fname'><br><br>
@@ -305,7 +305,8 @@
 </div>
 
 <script>
-var healthScore = 10;
+var healthScore = 10,
+	canvas;
 
 $('#sign-in').on('click', function() {
 	$('#name-input').hide();
@@ -325,43 +326,39 @@ $('#phq-submit, #skip-phq').on('click', function() {
 	$('#skin-quiz').show();
 });
 
-var canvas;
-
 $('#skin-submit, #skip-skin-quiz').on('click', function() {
 	$('#skin-quiz').hide();
 	$('html,body').animate({scrollTop: $(this).offset().top}, 800);
 	$('#skin-picture').show();
-	// window.addEventListener("DOMContentLoaded", function() {
-		canvas = document.getElementById("canvas"),
-			context = canvas.getContext("2d"),
-			video = document.getElementById("video"),
-			videoObj = { "video": true },
-			errBack = function(error) {
-				console.log("Video capture error: ", error.code); 
-			};
+	canvas = document.getElementById("canvas"),
+		context = canvas.getContext("2d"),
+		video = document.getElementById("video"),
+		videoObj = { "video": true },
+		errBack = function(error) {
+			console.log("Video capture error: ", error.code); 
+		};
 
-		if(navigator.getUserMedia) { 
-			navigator.getUserMedia(videoObj, function(stream) {
-				video.src = stream;
-				video.play();
-			}, errBack);
-		} else if(navigator.webkitGetUserMedia) { 
-			navigator.webkitGetUserMedia(videoObj, function(stream){
-				video.src = window.webkitURL.createObjectURL(stream);
-				video.play();
-			}, errBack);
-		}
-		else if(navigator.mozGetUserMedia) {
-			navigator.mozGetUserMedia(videoObj, function(stream){
-				video.src = window.URL.createObjectURL(stream);
-				video.play();
-			}, errBack);
-		}
+	if(navigator.getUserMedia) { 
+		navigator.getUserMedia(videoObj, function(stream) {
+			video.src = stream;
+			video.play();
+		}, errBack);
+	} else if(navigator.webkitGetUserMedia) { 
+		navigator.webkitGetUserMedia(videoObj, function(stream){
+			video.src = window.webkitURL.createObjectURL(stream);
+			video.play();
+		}, errBack);
+	}
+	else if(navigator.mozGetUserMedia) {
+		navigator.mozGetUserMedia(videoObj, function(stream){
+			video.src = window.URL.createObjectURL(stream);
+			video.play();
+		}, errBack);
+	}
 
-		$('#take-pic').on('click', function() {
-			context.drawImage(video, 0, 0, 640, 480);
-		});
-	// }, false);
+	$('#take-pic').on('click', function() {
+		context.drawImage(video, 0, 0, 640, 480);
+	});
 });
 
 $('#skin-pic-submit, #skip-skin-pic').on('click', function() {
