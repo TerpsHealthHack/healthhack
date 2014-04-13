@@ -430,35 +430,28 @@ tr {
         <tr>
             <td><div class='numberCircle'>1</div></td>
             <td>Do you exercise less than three times a week? </td>
-            <td><input type='radio' id="radio_o_1" name="radios_obesity_1" value="1">
-                <label for="radio76">Very sensitive </label>
-            <input type='radio' id="radio77" name="radios18" value="4"> 
-                <label for="radio77">Sensitive</label>
-            <input type='radio' id="radio78" name="radios18" value="3">
-                <label for="radio78">Normal</label>
-            <input type='radio' id="radio79" name="radios18" value="2">
-                <label for="radio79">Resistant</label>
-            <input type='radio' id="radio80" name="radios18" value="1">
-                <label for="radio80">Very resistant/Never had a problem</label>
+            <td><input type='radio' id="radio_o1_yes" name="radios_obesity_1" value="1">
+                <label for="radio_o1_yes">Very sensitive </label>
+            <input type='radio' id="radio_o1_no" name="radios_obesity_1" value="4"> 
+                <label for="radio_o1_no">Sensitive</label>
             </td>
         </tr>
-        
-    <div class='question'>
-		Do you exercise less than twice a week? <br>
-		<input type='radio'>Yes
-		<input type='radio'>No
-	</div>
     
-    <div class='question'>
-		What's your height? <br>
-		<input type='text' id="feet" size="2" placeholder="e.g. 5"> feet
-        <input type='text' id="inches" size="5" placeholder="e.g. 10"> inches
-	</div>
+        <tr>
+            <td><div class='numberCircle'>2</div></td>
+            <td>What's your height?</td>
+            <td><input type='text' id="feet" size="2" placeholder="e.g. 5"> feet
+                <input type='text' id="inches" size="5" placeholder="e.g. 10"> inches
+            </td>
+        </div>
+		
     
-    <div class='question'>
-		What's your weight? <br>
-		<input type='text' id='weight' size='5' placeholder='e.g. 150'> pounds
-	</div>
+        <tr>
+            <td><div class='numberCircle'>3</div></td>
+            What's your weight? <br>
+            <td><input type='text' id='weight' size='5' placeholder='e.g. 150'> pounds
+                </td>
+        </div>
     
     <table><tr><td>Sum:</td><td><div id="result">N/A</div></td></tr></table>
     <input type=button value='Calculate My BMI' onclick="calculate()" />
