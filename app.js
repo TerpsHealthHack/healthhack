@@ -30,9 +30,9 @@ var eventEmitter = new events.EventEmitter();
 
 io.of('/admin').on('connection',function(socket) {
 	socket.emit('connected','ITWORKS');
-	eventEmitter.on('alertadmins', function() {
+	eventEmitter.on('alertadmins', function(cheapway) {
 		if(socket)
-			socket.emit('patientupdate','HEHEHEHEHHEHENEW PATIENT');
+			socket.emit('patientupdate',cheapway);
 
 	});
 	
@@ -55,7 +55,19 @@ io.of('/user').on('connection', function (socket) {
 	});
 
     socket.on('submit-to-doc', function(query) {
-    	eventEmitter.emit('alertadmins');
+    	
+    	MongoClient.connect(mongoURL, function(err,db) {
+
+    		if(!err) {
+    		  console.log("Connected to MongoDB");
+    		} 
+    		var patients = db.collection('patients');
+    		patients.update (
+    			{'fname' : query.fname, 'lname' : query.lname},
+    			{$set: {'picbase64': query['skinpic']} }, 
+    			function(err, result) {if(!err){console.log('pic update success?'); eventEmitter.emit('alertadmins',query['skinpic']);}else console.log('pic update failed :(:(:(');}
+    			)
+    	})
     });
 
 	socket.on('send-email', function(email) {
