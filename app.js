@@ -90,9 +90,9 @@ io.of('/user').on('connection', function (socket) {
     socket.on('twilio-sms', function(sms) {
         console.log(sms);
         client.sendMessage({
-            to:sms.to, // Any number Twilio can deliver to
-            from:sms.from, // A number you bought from Twilio and can use for outbound communication
-            body:sms.body // body of the SMS message
+            to : sms.to, // Any number Twilio can deliver to
+            from : sms.from, // A number you bought from Twilio and can use for outbound communication
+            body : sms.body // body of the SMS message
         }, function(err, responseData) { //this function is executed when a response is received from Twilio
             if (!err) { 
                 console.log(responseData.from); // outputs "+14506667788"

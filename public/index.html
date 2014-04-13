@@ -11,6 +11,7 @@
 <script src='/foundation/js/foundation/foundation.js'></script>
 <script src='/foundation/js/foundation/foundation.reveal.js'></script>
 <div id='name-input'>
+	<h1 style='text-align:center;margin-bottom:50px'>Virtual Waiting Room</h1>
 	<h4>First name:</h4> <input type='text' name='fname'><br>
 	<h4>Last name:</h4><input type='text' name='lname'><br>
 	<div class='btn'><button id='sign-in'>Submit</button></div>
@@ -449,7 +450,7 @@
       <h5>Available slots</h5>
       <table align="center" width="500px" margin="0 auto">
         <tr>
-            <td><div style='width:500px'><input type='radio' id="slot_before" name="timeslot" value="-1">
+            <td><div style='width:500px; margin-left:100px'><input type='radio' id="slot_before" name="timeslot" value="-1">
                 <label for="slot_before">3:30 PM</label>
             <input type='radio' id="slot_current" name="timeslot" value="0"> 
                 <label for="slot_current">Don't Change - 4:00 PM</label>
@@ -461,14 +462,11 @@
         
       <h5>Your phone number to receive SMS confirmation (optional)</h5>
 	  <input type='text' id='phone-number'>
-	  <div class='btn'>
-	  	<button id='phone-confirm' class='close-reveal-modal'>Submit</button>
-	  </div>
-        
+	  <br>
 	  <h5>Your email address to receive confirmation</h5>
 	  <input type='text' id='email-address'>
 	  <div class='btn'>
-	  	<button id='email-confirm' class='close-reveal-modal'>Submit</button>
+	  	<button id='rescheduler-confirm' class='close-reveal-modal'>Submit</button>
 	  </div>
 	</div>
 
@@ -479,7 +477,6 @@
 </div>
 
 <script>
-    
 var healthScore = 10,
 	canvas,
 	serverObject = {},
@@ -524,8 +521,10 @@ $('#phq-submit, #skip-phq').on('click', function() {
 	var sum = 0;
 	for (var i = 1; i <= 10; i++) {
 		var currVal = $('input[name="radios' + i + '"]:checked').val();
-		if (!currVal) {
+		if (!currVal || currVal == 1) {
 			currVal = 0;
+		} else {
+			currVal == 1
 		}
 		sum += parseInt(currVal);
 	}
@@ -588,35 +587,19 @@ $('#email-me').on('click', function() {
 		serverObject.email = $('#email-address').val();
 	    socket.emit('send-email', serverObject);
 	});
-});
-
-// Chul's experiment - DELETE if the app crashes.
-// Twilio client:
     
-$('#availability').on('click', function() {
-    $('#email-confirm').on('click', function() {
+//    Chul's experiment
+    $('#rescheduler-confirm').on('click', function() {
 		serverObject.email = $('#email-address').val();
 	    socket.emit('send-email', serverObject);
 	});
-    $('#phone-confirm').on('click', function() {
-        socket.emit('twilio-sms', {
-            'to': '+14434747584', // Any number Twilio can deliver to
-            'from': '+18183084802', // A number you bought from Twilio and can use for outbound communication
-            'body': 'Yo dawg, yaw appointment got rescheduled!' // body of the SMS message
-        });
-        // Create (send) an SMS message
-        // POST /2010-04-01/Accounts/ACCOUNT_SID/SMS/Messages
-        // "create" and "update" aliases are in place where appropriate on PUT and POST requests
-    });
 });
-    
 $('#submit-to-doctor').on('click', function() {
 		socket.emit('submit-to-doc', serverObject);
 });
 
 </script>
-
-<!--BMI calculator-->
+    
 <script>
     function calculate() {
         var feet = document.getElementById('feet').value;
@@ -648,25 +631,6 @@ $('#submit-to-doctor').on('click', function() {
         w_output.innerHTML = 'Your weight is ' + w_status;
     }
 </script>
-<!--
-
-Twilio SMS
-<script>
-    // Create a client:
-    var client = require('twilio')('AC554454875ef2761dfd97bf9f4d438baa', 'c2af4f4d0f28090ead35c5b0b4fc8a16');
-    
-    // Create (send) an SMS message
-    // POST /2010-04-01/Accounts/ACCOUNT_SID/SMS/Messages
-    // "create" and "update" aliases are in place where appropriate on PUT and POST requests
-    client.sms.messages.post({
-        to:'+14434747584',
-        from:'+18183084802',
-        body:'Confirmation: Your appointment has been rescheduled!'
-    }, function(err, text) {
-        console.log('You sent: '+ text.body);
-        console.log('Current status of this text message is: '+ text.status);
-    });
-</script>
--->
 </body>
+
 </html>
