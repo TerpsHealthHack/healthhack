@@ -19,6 +19,12 @@ if (io) {
   socket.on('connected', function (res) {
   	console.log('yay' + res);
   });
+
+  socket.on('patientupdate', function (res) {
+  	document.querySelector("h3").innerHTML += "<br>" + res;
+  });
+
+  
 }
 </script>
 </body>

@@ -4,7 +4,8 @@ var mail = require("nodemailer").mail
  , http = require('http')
  , server = http.createServer(app)
  , io = require('socket.io').listen(server)
- , MongoClient = require('mongodb').MongoClient;
+ , MongoClient = require('mongodb').MongoClient
+ , events = require('events');
 
 server.listen(process.env.PORT || 8080);
 
@@ -21,7 +22,25 @@ app.get('/:file', function (req, res) {
 });
 var mongoURL = process.env.MONGOHQ_URL;
 
+// ADMIN PAGE HANDLING ------------------------------
+/*
+http://stackoverflow.com/questions/8812505/working-with-routes-in-express-js-and-socket-io-and-maybe-node-in-general
+*/
+var eventEmitter = new events.EventEmitter();
 
+io.of('/admin').on('connection',function(socket) {
+	socket.emit('connected','ITWORKS');
+	eventEmitter.on('alertadmins', function() {
+		if(socket)
+			socket.emit('patientupdate','HEHEHEHEHHEHENEW PATIENT');
+
+	});
+	
+
+});
+
+
+//user page handling-----------------
 io.of('/user').on('connection', function (socket) {
 	MongoClient.connect(mongoURL, function(err, db) {
 	  if(!err) {
@@ -43,6 +62,11 @@ io.of('/user').on('connection', function (socket) {
         //     text: "Your depression numba is: " + email.healthScore
         // });
     });
+
+    socket.on('submit-to-doc', function(query) {
+    	eventEmitter.emit('alertadmins');
+    });
+
     socket.emit('connected');
 
 
@@ -52,11 +76,3 @@ io.of('/user').on('connection', function (socket) {
 
 });
 
-    // ADMIN PAGE HANDLING ------------------------------
-    /*
-    http://stackoverflow.com/questions/8812505/working-with-routes-in-express-js-and-socket-io-and-maybe-node-in-general
-    */
-    io.of('/admin').on('connection',function(socket) {
-    	socket.emit('connected','ITWORKS');
-
-    });
