@@ -54,6 +54,10 @@ io.of('/user').on('connection', function (socket) {
 	  });
 	});
 
+    socket.on('submit-to-doc', function(query) {
+    	eventEmitter.emit('alertadmins');
+    });
+
 	socket.on('send-email', function(email) {
 	  	console.log(email);
         mail({
