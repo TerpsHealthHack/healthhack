@@ -390,8 +390,10 @@ var today = dayOfWeek + " " + curMonth + " " + objToday.getDate() + ", " + curYe
             });
 
             socket.on('queryresult', function (res) {
-              document.querySelector("h3").innerHTML = '<img src="'+res+'">';
+              $('#pat').html(res);
             });
+
+            socket.emit('querypat','gogogo');
           }
 
           $(".list-group-item").hover(
