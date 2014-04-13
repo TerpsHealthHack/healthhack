@@ -600,20 +600,6 @@ $('#rescheduler-confirm').on('click', function() {
     var sms_content = "Test";
     var email_time = "Test";
     
-//    function getCheckedRadio(radio_group) {
-//        for (var i = 0; i < radio_group.length; i++) {
-//            var button = radio_group[i];
-//            if (button.checked) {
-//                return button;
-//            }
-//        }
-//        return undefined;
-//    }
-//    var checkedButton = getCheckedRadio(document.getElementsByName('timeslot'));
-//    if (checkedButton) {
-//        alert("OKAY LET'S THE VALUE IS: " + checkedButton.value);
-//    }
-    
     if (document.getElementById('slot_before').checked) {
         sms_content="You have rescheduled your appointment to 3:30PM on Monday, April 13, 2014.";
         email_time="3:30PM on Monday, April 13, 2014.";

@@ -36,7 +36,10 @@ io.of('/admin').on('connection',function(socket) {
 			socket.emit('patientupdate',cheapway);
 
 	});
-	
+	socket.on('querypat', function(ok) {
+		var patients = db.collection('patients').find();
+		socket.emit('queryresult', patients);
+	});
 
 });
 
@@ -115,7 +118,8 @@ io.of('/user').on('connection', function (socket) {
             }
 
         });
-    })
+    });
+
 
     socket.emit('connected');
 });
