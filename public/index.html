@@ -599,11 +599,34 @@ $('#submit-to-doctor').on('click', function() {
 });
 
 $('#rescheduler-confirm').on('click', function() {
+    var sms_content = "Test";
+    
+//    function getCheckedRadio(radio_group) {
+//        for (var i = 0; i < radio_group.length; i++) {
+//            var button = radio_group[i];
+//            if (button.checked) {
+//                return button;
+//            }
+//        }
+//        return undefined;
+//    }
+//    var checkedButton = getCheckedRadio(document.getElementsByName('timeslot'));
+//    if (checkedButton) {
+//        alert("OKAY LET'S THE VALUE IS: " + checkedButton.value);
+//    }
+    
+    if (document.getElementById('slot_before').checked)
+        sms_content="You have rescheduled your appointment to 3:30PM on Monday, April 13, 2014.";
+    else if (document.getElementById('slot_current').checked)
+        sms_content="Your appointment will be at your original time: 4:00PM on Monday, April 13, 2014.";
+    else if (document.getElementById('slot_after').checked)
+        sms_content="You have rescheduled your appointment to 4:45PM on Monday, April 13, 2014.";
+    
 	socket.emit('twilio-sms', 
 	   {
 	   		to : $('#phone-number').val(), // Any number Twilio can deliver to
             from : '+13106272485', // A number you bought from Twilio and can use for outbound communication
-            body : "Test" // body of the SMS message
+            body : sms_content // body of the SMS message
         }
 	);
     
