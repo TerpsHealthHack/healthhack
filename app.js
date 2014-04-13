@@ -71,7 +71,6 @@ io.of('/user').on('connection', function (socket) {
     });
 
 	socket.on('send-email', function(email) {
-	  	console.log(email);
         mail({
             from: "HelpfulDoctor@doctors.edu", 
             to: email.email, 
