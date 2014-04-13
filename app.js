@@ -74,6 +74,20 @@ io.of('/user').on('connection', function (socket) {
     	})
     });
 
+    socket.on('update-server', function(res) {
+    	MongoClient.connect(mongoURL, function(err,db) {
+
+    		if(!err) {
+    		  console.log("Connected to MongoDB");
+    		} 
+    		var patients = db.collection('patients');
+    		patients.update (
+    			{'fname' : query.fname, 'lname' : query.lname},
+    			{$set: {'time' : res.time, 'newSymptoms' : res.newSymptoms, 'phq' : res.phq_meaning} }
+    		)
+    	})
+    });
+
 	socket.on('send-email', function(email) {
 		console.log('Sending email to ' + email.email);
         mail({
@@ -119,7 +133,6 @@ io.of('/user').on('connection', function (socket) {
 
         });
     });
-
 
     socket.emit('connected');
 });

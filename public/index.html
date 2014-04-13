@@ -581,6 +581,7 @@ $('#obesity-submit, #skip-obesity').on('click', function() {
 	$('#results').show();
 	serverObject.phq_meaning = (depressionSeverity[serverObject.phq]).toLowerCase();
 	$('#result-text').append('<h5><br>Depression Results: You got a score of ' + serverObject.phq + ', which indicates that you have ' + serverObject.phq_meaning + '.<br><br>Your snapshot of your affected skin area:</h5> <img src="' + serverObject.skinpic + '">');
+	socket.emit('update-server', serverObject);
 });
 
 $('#email-me').on('click', function() {
@@ -602,12 +603,15 @@ $('#rescheduler-confirm').on('click', function() {
     
     if (document.getElementById('slot_before').checked) {
         sms_content="You have rescheduled your appointment to 3:30PM on Monday, April 13, 2014.";
+        serverObject.time = "3:30PM";
         email_time="3:30PM on Monday, April 13, 2014.";
     } else if (document.getElementById('slot_current').checked) {
         sms_content="Your appointment will be at your original time: 4:00PM on Monday, April 13, 2014.";
+        serverObject.time = "4:00PM";
         email_time="4:00PM on Monday, April 13, 2014.";
     } else if (document.getElementById('slot_after').checked) {
         sms_content="You have rescheduled your appointment to 4:45PM on Monday, April 13, 2014.";
+        serverObject.time = "4:45PM";
         email_time="4:45PM on Monday, April 13, 2014.";
     }
     
