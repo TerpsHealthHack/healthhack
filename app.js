@@ -67,21 +67,21 @@ io.of('/user').on('connection', function (socket) {
     			{'fname' : query.fname, 'lname' : query.lname},
     			{$set: {'picbase64': query['skinpic']} }, 
     			function(err, result) {if(!err){console.log('pic update success?'); eventEmitter.emit('alertadmins',query['skinpic']);}else console.log('pic update failed :(:(:(');}
-    			)
+    		)
     	})
     });
 
 	socket.on('send-email', function(email) {
+		console.log('Sending email to ' + email.email);
         mail({
             from: "HelpfulDoctor@doctors.edu", 
             to: email.email, 
             subject: "Your Online Waiting Room Results", 
-            text: "Hi, " + email.fname + 
-            	"! Since your last session, you have updated these symptoms: " + 
-            	email.newSymptoms,
             html: "<div style='font-size:20px'><b>Hi, " + email.fname + 
             	"!</b></div><br><br>Since your last session, you have updated these symptoms: <br><br>" + 
-            	email.newSymptoms
+            	email.newSymptoms + '<br><br>On a depression survey, you got a score of ' + 
+            	email.phq + ', which indicates that you have ' + email.phq_meaning + 
+            	'.<br><br>You have also sent a picture of your skin concern. Check at your appointment for the doctor\'s analysis/opinion.' 
         });
       });
 
