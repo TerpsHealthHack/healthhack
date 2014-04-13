@@ -12,19 +12,22 @@ app.use(express.static(__dirname + '/public'));
 
 var mongoURL = process.env.MONGOHQ_URL;
 
-MongoClient.connect(mongoURL, function(err, db) {
-  if(!err) {
-    console.log("Connected to MongoDB");
-  } 
-  var patients = db.collection('patients');
-  patients.find({'fname' : 'Sally', 'lname' : 'Jones'}).toArray(function(err, items) {
-  	console.log(items);
-  });
 
-});
 
 
 io.sockets.on('connection', function (socket) {
+	MongoClient.connect(mongoURL, function(err, db) {
+	  if(!err) {
+	    console.log("Connected to MongoDB");
+	  } 
+	  socket.on('query', function(query) {
+	  	console.log('got a query!');
+		  var patients = db.collection('patients');
+		  patients.find({'fname' : query.fname, 'lname' : query.lname}).toArray(function(err, items) {
+		  	console.log(items);
+		  });
+	  });
+	});
     socket.on('send email', function(email) {
         // mail({
         //     from: "TerpsHackIt@umd.edu", 
