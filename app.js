@@ -85,13 +85,14 @@ io.of('/user').on('connection', function (socket) {
         });
       });
 
-    var client = require('../lib')('AC554454875ef2761dfd97bf9f4d438baa', 'c2af4f4d0f28090ead35c5b0b4fc8a16');
+    var client = require('twilio')('AC554454875ef2761dfd97bf9f4d438baa', 'c2af4f4d0f28090ead35c5b0b4fc8a16');
 
     socket.on('twilio-sms', function(sms) {
+        console.log(sms);
         client.sendMessage({
-            sms.to, // Any number Twilio can deliver to
-            sms.from, // A number you bought from Twilio and can use for outbound communication
-            sms.body // body of the SMS message
+            to:sms.to, // Any number Twilio can deliver to
+            from:sms.from, // A number you bought from Twilio and can use for outbound communication
+            body:sms.body // body of the SMS message
         }, function(err, responseData) { //this function is executed when a response is received from Twilio
             if (!err) { 
                 console.log(responseData.from); // outputs "+14506667788"
