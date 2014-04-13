@@ -1,0 +1,30 @@
+{
+  "name": "healthhack",
+  "version": "0.0.0",
+  "description": "TerpsFixIt hack for HealthHack",
+  "main": "app.js",
+  "dependencies": {
+    "express": "~4.0.0",
+    "http": "~0.0.0",
+    "nodemailer": "~0.6.2",
+    "package": "~1.0.1",
+    "socket.io": "~0.9.16"
+  },
+  "engines": {
+    "node": "0.10.x"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/TerpsHealthHack/healthhack.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/TerpsHealthHack/healthhack/issues"
+  },
+  "homepage": "https://github.com/TerpsHealthHack/healthhack"
+}
