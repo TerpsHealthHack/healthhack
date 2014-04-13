@@ -6,17 +6,38 @@
 		text-align: center;
 		font: 14px Arial;
 	}
+	#phq-survey, #skin-quiz, #obesity-quiz {
+		display: none;
+	}
 </style>
+<script src='http://code.jquery.com/jquery.min.js' type='text/javascript'></script>
 <script src='../socket.io/socket.io.js'></script>
 </head>
 <body>
 
-<form>
+<div id='name-input'>
 	First name: <input type='text' name='fname'><br>
 	Last name: <input type='text' name='lname'><br>
-</form>
+	<button id='sign-in'>Go</button>
+</div>
+
+<div id='phq-survey'>
+
+</div>
+
+<div id='skin-quiz'>
+</div>
+
+<div id='obesity-quiz'>
+</div>
+
 <script>
 var healthScore = 10;
+
+$('sign-in').on('click', function() {
+	$('name-input').hide();
+
+});
 
 if (io) {
   var socket = io.connect('/');
