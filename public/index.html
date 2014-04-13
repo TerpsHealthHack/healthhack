@@ -6,13 +6,13 @@
 		text-align: center;
 		font: 14px Arial;
 	}
-	#phq-survey, #skin-quiz, #obesity-quiz {
+	#phq-survey, #skin-quiz, #skin-picture, #obesity-quiz {
 		display: none;
 	}
 </style>
 <script src='http://code.jquery.com/jquery.min.js' type='text/javascript'></script>
-<!-- <script src='../socket.io/socket.io.js'></script>
- --></head>
+<script src='../socket.io/socket.io.js'></script>
+</head>
 <body>
 
 <div id='name-input'>
@@ -28,13 +28,95 @@
 		<input type="radio" name="Question1" value="0">Not at all<br>
 		<input type="radio" name="Question2" value="1">Several days<br>
 	</form>
+	<button id='phq-submit'>Go</button>
+	<button id='skip-phq'>Skip</button>
 </div>
 
 <div id='skin-quiz'>
-	
+	<div class='question'>
+		Your eye color is: <br>
+		<input type='radio'>Light blue, light gray, or light green
+		<input type='radio'> Blue, gray, or green
+		<input type='radio'>Hazel or light brown
+		<input type='radio'>Dark brown
+		<input type='radio'>Brownish black
+	</div>
+
+	<div class='question'>
+		Your natural hair color is: <br>
+		<input type='radio'>Red or light blonde 
+		<input type='radio'>Blonde 
+		<input type='radio'>Dark blonde or light brown 
+		<input type='radio'>Dark brown 
+		<input type='radio'>Black 
+	</div>
+
+	<div class='question'>
+		<br>Your natural skin color (before sun exposure) is: <br>
+		<input type='radio'>Ivory white 
+		<input type='radio'>Fair or pale 
+		<input type='radio'>Fair to beige, with golden undertone 
+		<input type='radio'>Olive or light brown 
+		<input type='radio'>Dark brown or black 
+	</div>
+
+	<div class='question'>
+		<br>How many freckles do you have on unexposed areas of your skin?<br>
+		<input type='radio'>Many 
+		<input type='radio'>Several 
+		<input type='radio'>A few 
+		<input type='radio'>Very few 
+		<input type='radio'>None
+	</div> 
+
+	<div class='question'>
+		<br>How does your skin respond to the sun?<br>
+		<input type='radio'>Always burns, blisters and peels 
+		<input type='radio'>Often burns, blisters and peels 
+		<input type='radio'>Burns moderately 
+		<input type='radio'>Burns rarely, if at all 
+		<input type='radio'>Never burns 
+	</div>
+
+	<div class='question'>
+		<br>Does your skin tan?<br>
+		<input type='radio'>Never -- I always burn
+		<input type='radio'>Seldom 
+		<input type='radio'>Sometimes 
+		<input type='radio'>Often 
+		<input type='radio'>Always 
+	</div>
+
+	<div class='question'>
+		<br>How deeply do you tan?<br>
+		<input type='radio'>Not at all or very little 
+		<input type='radio'>Lightly 
+		<input type='radio'>Moderately 
+		<input type='radio'>Deeply 
+		<input type='radio'>My skin is naturally dark 
+	</div>
+
+	<div class='question'>
+		<br>How sensitive is your face to the sun?<br>
+		<input type='radio'>Very sensitive 
+		<input type='radio'>Sensitive 
+		<input type='radio'>Normal 
+		<input type='radio'>Resistant 
+		<input type='radio'>Very resistant/Never had a problem
+	</div>
+
+	<button id='skin-submit'>Go</button> 
+	<button id='skip-skin-quiz'>Skip</button>
+</div>
+
+<div id='skin-picture'>
+	Take a picture! <br>
+	<button id='skin-pic-submit'>Go</button> 
+	<button id='skip-skin-pic'>Skip</button>
 </div>
 
 <div id='obesity-quiz'>
+	Obesity quiz stuff
 </div>
 
 <script>
@@ -45,13 +127,28 @@ $('#sign-in').on('click', function() {
 	$('#phq-survey').show();
 });
 
-// if (io) {
-//   var socket = io.connect('/');
-//   socket.on('connected', function (res) {
-//   	var email = { "toEmail": "alexacgreenberg@gmail.com" ,"healthScore" : healthScore};
-//     socket.emit('send email', email);
-//   });
-// }
+$('#phq-submit, #skip-phq').on('click', function() {
+	$('#phq-survey').hide();
+	$('#skin-quiz').show();
+});
+
+$('#skin-submit, #skip-skin-quiz').on('click', function() {
+	$('#skin-quiz').hide();
+	$('#skin-picture').show();
+});
+
+$('#skin-pic-submit, #skip-skin-pic').on('click', function() {
+	$('#skin-picture').hide();
+	$('#obesity-quiz').show();
+});
+
+if (io) {
+  var socket = io.connect('/');
+  socket.on('connected', function (res) {
+  	var email = { "toEmail": "alexacgreenberg@gmail.com" ,"healthScore" : healthScore};
+    socket.emit('send email', email);
+  });
+}
 </script>
 </body>
 </html>
