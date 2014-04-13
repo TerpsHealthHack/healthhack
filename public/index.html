@@ -517,5 +517,18 @@ if (io) {
   });
 }
 </script>
+    
+<script>
+    function calculate() {
+        var feet = document.getElementById('feet').value;
+        var inches = document.getElementById('inches').value;
+        var weight = document.getElementById('weight').value;
+        var sum_inches = parseInt(feet) * 12 + parseInt(inches);
+        var sum = parseFloat(weight) / Math.pow(sum_inches, 2) * 703;
+
+        var output = document.getElementById('result');
+        output.innerHTML = sum;
+    }
+</script>
 </body>
 </html>
