@@ -452,7 +452,7 @@ if (io) {
   });
 }
 $('#sign-in').on('click', function() {
-	socket.emit('query', { 'fname' : '$('input[name="fname"]').val()', 'lname' : $('input[name="lname"]') });
+	socket.emit('query', { 'fname' : $('input[name="fname"]').val(), 'lname' : $('input[name="lname"]').val() });
 	$('#name-input').hide();
 	$('html,body').animate({scrollTop: $(this).offset().top}, 200);
 	$('#symptoms').show();
