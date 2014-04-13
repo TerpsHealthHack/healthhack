@@ -95,8 +95,8 @@ tr {height:80px;}
 </head>
 
 <body>
-
-
+<script src='/foundation/js/foundation/foundation.js'></script>
+<script src='/foundation/js/foundation/foundation.reveal.js'></script>
 <div id='name-input'>
 	<h4>First name:</h4> <input type='text' name='fname'><br>
 	<h4>Last name:</h4><input type='text' name='lname'><br>
@@ -441,27 +441,40 @@ tr {height:80px;}
 <div id='results'>
 	<h3>Your results:</h3>
 
-	<div class='btn'>
-		<button id='email-me'>Email Results</button>
+	<div id="emailModal" class="reveal-modal" data-reveal>
+	  <h5>Your email address</h5>
+	  <input type='text' id='email-address'>
+	  <div class='btn'>
+	  	<button id='submit-email' class='close-reveal-modal'>Submit</button>
+	  </div>
+	</div>
+
+	<div class='btn'>	
+		<button id='email-me' class='open-modal' data-reveal-id='emailModal'>Email Results to Me</button>
 		<button id='submit-to-doctor'>Submit to Doctor</button>
 		<button id='skip'>Skip</button>
 	</div>
 </div>
+
 <script>
 var healthScore = 10,
 	canvas,
 	serverObject = {},
 	socket;
 
+$(document).foundation();
+
 if (io) {
   socket = io.connect('/');
   socket.on('connected', function (res) {
-  	var email = { "toEmail": "alexacgreenberg@gmail.com" ,"healthScore" : healthScore};
-    socket.emit('send email', email);
+  	console.log('Webpage connected');
   });
 }
 $('#sign-in').on('click', function() {
-	socket.emit('query', { 'fname' : $('input[name="fname"]').val(), 'lname' : $('input[name="lname"]').val() });
+	var fname = $('input[name="fname"]').val(), 
+	 lname = $('input[name="lname"]').val();
+	socket.emit('query', { 'fname' : fname, 'lname' : lname });
+	serverObject.fname = fname;
 	socket.on('query-response', function(res) {
 		var person = res[0];
 		$('#previous-input-text').append("<h5><strong>First name:</strong> " + person.fname + "<br><strong>Last name:</strong> " + person.lname + "<br><strong>Date of birth:</strong> " + person.DOB + "<br><strong>Age:</strong> " + person.age + "<br><strong>Sex:</strong> " + person.sex + "<br><strong>Illness:</strong> " + person.illness + "<br><strong>Symptoms:</strong> " + person.symptoms.join(", ") + "</h5>");
@@ -477,6 +490,9 @@ $('#previous-input-next').on('click', function() {
 });
 
 $('#symptom-submit, #skip-symptom').on('click', function() {
+	if ($('#symptoms-text').val()) {
+		serverObject.newSymptoms = $('#symptoms-text').val();
+	}
 	$('#symptoms').hide();
 	$('html,body').animate({scrollTop: $(this).offset().top}, 200);
 	$('#phq-survey').show();
@@ -536,6 +552,12 @@ $('#obesity-submit, #skip-obesity').on('click', function() {
 	$('#results').show();
 });
 
+$('#email-me').on('click', function() {
+	$('#submit-email').on('click', function() {
+		serverObject.email = $('#email-address').val();
+	    socket.emit('send-email', serverObject);
+	});
+});
 $('#submit-to-doctor').on('click', function() {
 	socket.emit('submit-to-doc', "THISISWHATIMSENDING");
 });

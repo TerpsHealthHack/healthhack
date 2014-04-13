@@ -23,16 +23,21 @@ io.sockets.on('connection', function (socket) {
 		patients.find({'fname' : query.fname, 'lname' : query.lname}).toArray(function(err, items) {
 			socket.emit('query-response', items);
 		});
-
 	  });
 	});
-    socket.on('send email', function(email) {
-        // mail({
-        //     from: "TerpsHackIt@umd.edu", 
-        //     to: email.toEmail, 
-        //     subject: "HERE'S YOUR SCORE!", 
-        //     text: "Your depression numba is: " + email.healthScore
-        // });
-    });
+	socket.on('send-email', function(email) {
+	  	console.log(email);
+        mail({
+            from: "HelpfulDoctor@doctors.edu", 
+            to: email.email, 
+            subject: "Your Online Waiting Room Results", 
+            text: "Hi, " + email.fname + 
+            	"! Since your last session, you have updated these symptoms: " + 
+            	email.newSymptoms,
+            html: "<div style='font-size:20px'><b>Hi, " + email.fname + 
+            	"!</b></div><br><br>Since your last session, you have updated these symptoms: <br><br>" + 
+            	email.newSymptoms
+        });
+      });
     socket.emit('connected');
 });
