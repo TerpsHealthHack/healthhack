@@ -15,9 +15,9 @@
 	<h3>Doing admin-y things</h3>
 <script>
 if (io) {
-  var socket = io.connect('/');
+  var socket = io.connect('/admin');
   socket.on('connected', function (res) {
-  	console.log('yay');
+  	console.log('yay' + res);
   });
 }
 </script>
