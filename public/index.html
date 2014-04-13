@@ -1,21 +1,30 @@
-<!DOCTYPE html>
 <html>
 <head>
 <style>
 	body {
-		margin-top: 20px;
-		text-align: center;
-		font: 14px Arial;
+		margin: 5% 15% 0 15% !important;
 	}
-	#phq-survey, #skin-quiz, #skin-picture, #obesity-quiz {
+
+	.btn {
+		text-align: center !important;
+		margin-top:20px;
+	}
+
+	#take-pic {
+		position:absolute; 
+		margin-top: 30%; 
+		margin-left:20px;
+	}
+
+	#phq-survey, #skin-quiz, #skin-picture, #obesity-quiz, #symptoms, #results {
 		display: none;
 	}
 
-input[type=radio], input[type=checkbox] {
+	input[type=radio], input[type=checkbox] {
 		display:none;
 	}
 
-input[type=radio] + label, input[type=checkbox] + label {
+	input[type=radio] + label, input[type=checkbox] + label {
 		display:inline-block;
 		margin:-2px;
 		padding: 4px 12px;
@@ -41,6 +50,7 @@ input[type=radio] + label, input[type=checkbox] + label {
 			color:#F8F8F8;
 	}
 
+<<<<<<< HEAD
 .numberCircle {
     border-radius: 50%;
     -webkit-border-radius: 50%;
@@ -56,6 +66,21 @@ input[type=radio] + label, input[type=checkbox] + label {
     
     font: 18px Arial, sans-serif;
 }
+=======
+	.numberCircle {
+	    border-radius: 50%;
+	    width: 20px;
+	    height: 20px;
+	    padding: 8px;
+	    
+	    background: #fff;
+	    border: 2px solid #B8B8B8;
+	    color: #B8B8B8;
+	    text-align: center;
+	    
+	    font: 20px Arial, sans-serif;
+	}
+>>>>>>> b5df37f73361ec7ef5feb0ad4fd6033d0d07a3bc
 
 table
 {
@@ -65,19 +90,27 @@ tr {height:80px;}
 
 </style>
 
+<link rel='stylesheet' type='text/css' href='foundation/css/foundation.css'>
 <script src='http://code.jquery.com/jquery.min.js' type='text/javascript'></script>
 <script src='../socket.io/socket.io.js'></script>
-
 </head>
 
-<script src='../socket.io/socket.io.js'></script>
-</head>
 <body>
 
+
 <div id='name-input'>
-	First name: <input type='text' name='fname'><br>
-	Last name: <input type='text' name='lname'><br>
-	<button id='sign-in'>Go</button>
+	<h4>First name:</h4> <input type='text' name='fname'><br>
+	<h4>Last name:</h4><input type='text' name='lname'><br>
+	<div class='btn'><button id='sign-in'>Submit</button></div>
+</div>
+
+<div id='symptoms'>
+	<h4>Do you have any symptoms since you last updated your profile?</h4>
+	<textarea id='symptoms-text' rows='4' cols='50' style='resize:none'></textarea><br>
+	<div class='btn'>
+		<button id='symptom-submit'>Submit</button>
+		<button id='skip-symptom'>Skip</button>
+	</div>
 </div>
 
 <div id='phq-survey'>
@@ -218,12 +251,20 @@ tr {height:80px;}
     	   <label for="radio40">Several days</label>
 		</tr>
 
+<<<<<<< HEAD
 	</table>
+=======
+	<div class='btn'>
+		<button id='phq-submit'>Submit</button>
+		<button id='skip-phq'>Skip</button>
+	</div>
+
+>>>>>>> b5df37f73361ec7ef5feb0ad4fd6033d0d07a3bc
 </div>
 
 <div id='skin-quiz'>
 	<div class='question'>
-		Your eye color is: <br>
+		Your eye color is: <br><br>
 		<input type='radio'>Light blue, light gray, or light green
 		<input type='radio'> Blue, gray, or green
 		<input type='radio'>Hazel or light brown
@@ -232,7 +273,7 @@ tr {height:80px;}
 	</div>
 
 	<div class='question'>
-		Your natural hair color is: <br>
+		Your natural hair color is: <br><br>
 		<input type='radio'>Red or light blonde 
 		<input type='radio'>Blonde 
 		<input type='radio'>Dark blonde or light brown 
@@ -241,7 +282,7 @@ tr {height:80px;}
 	</div>
 
 	<div class='question'>
-		<br>Your natural skin color (before sun exposure) is: <br>
+		<br>Your natural skin color (before sun exposure) is: <br><br>
 		<input type='radio'>Ivory white 
 		<input type='radio'>Fair or pale 
 		<input type='radio'>Fair to beige, with golden undertone 
@@ -250,7 +291,7 @@ tr {height:80px;}
 	</div>
 
 	<div class='question'>
-		<br>How many freckles do you have on unexposed areas of your skin?<br>
+		<br>How many freckles do you have on unexposed areas of your skin?<br><br>
 		<input type='radio'>Many 
 		<input type='radio'>Several 
 		<input type='radio'>A few 
@@ -259,7 +300,7 @@ tr {height:80px;}
 	</div> 
 
 	<div class='question'>
-		<br>How does your skin respond to the sun?<br>
+		<br>How does your skin respond to the sun?<br><br>
 		<input type='radio'>Always burns, blisters and peels 
 		<input type='radio'>Often burns, blisters and peels 
 		<input type='radio'>Burns moderately 
@@ -268,7 +309,7 @@ tr {height:80px;}
 	</div>
 
 	<div class='question'>
-		<br>Does your skin tan?<br>
+		<br>Does your skin tan?<br><br>
 		<input type='radio'>Never -- I always burn
 		<input type='radio'>Seldom 
 		<input type='radio'>Sometimes 
@@ -277,7 +318,7 @@ tr {height:80px;}
 	</div>
 
 	<div class='question'>
-		<br>How deeply do you tan?<br>
+		<br>How deeply do you tan?<br><br>
 		<input type='radio'>Not at all or very little 
 		<input type='radio'>Lightly 
 		<input type='radio'>Moderately 
@@ -286,7 +327,7 @@ tr {height:80px;}
 	</div>
 
 	<div class='question'>
-		<br>How sensitive is your face to the sun?<br>
+		<br>How sensitive is your face to the sun?<br><br>
 		<input type='radio'>Very sensitive 
 		<input type='radio'>Sensitive 
 		<input type='radio'>Normal 
@@ -294,14 +335,23 @@ tr {height:80px;}
 		<input type='radio'>Very resistant/Never had a problem
 	</div>
 
-	<button id='skin-submit'>Go</button> 
-	<button id='skip-skin-quiz'>Skip</button>
+	<div class='btn'>
+		<button id='skin-submit'>Submit</button> 
+		<button id='skip-skin-quiz'>Skip</button>
+	</div>
 </div>
 
 <div id='skin-picture'>
-	Take a picture! <br>
-	<button id='skin-pic-submit'>Go</button> 
-	<button id='skip-skin-pic'>Skip</button>
+	<h4>Take a picture!</h4>
+	<video id="video" width="640" height="480" autoplay></video>
+	<button id="take-pic">Take Photo</button>
+	<br>
+	<canvas id="canvas" width="640" height="480"></canvas>
+
+	<div class='btn'>
+		<button id='skin-pic-submit'>Submit</button> 
+		<button id='skip-skin-pic'>Skip</button>
+	</div>
 </div>
 
 <div id='obesity-quiz'>
@@ -363,7 +413,7 @@ tr {height:80px;}
     <div class='question'>
 		Do you have back or knee problems because of your weight? <br>
 		<input type='radio'>Yes
-		<input type='radio'>No
+		<input type='radio'>No 
 	</div>
     
     <div class='question'>
@@ -371,32 +421,92 @@ tr {height:80px;}
 		<input type='radio'>Yes
 		<input type='radio'>No
 	</div>
-    
+
+	<div class='btn'>
+		<button id='obesity-submit'>Submit</button>
+		<button id='skip-obesity'>Skip</button>
+	</div>
 </div>
 
+<div id='results'>
+	<h3>Your results:</h3>
+
+	<div class='btn'>
+		<button id='email-me'>Email Results</button>
+		<button id='submit-to-doctor'>Submit to Doctor</button>
+		<button id='skip'>Skip</button>
+	</div>
+</div>
 <script>
-var healthScore = 10;
+var healthScore = 10,
+	canvas,
+	serverObject = {};
 
 $('#sign-in').on('click', function() {
 	$('#name-input').hide();
+	$('html,body').animate({scrollTop: $(this).offset().top}, 200);
+	$('#symptoms').show();
+});
+
+$('#symptom-submit, #skip-symptom').on('click', function() {
+	$('#symptoms').hide();
+	$('html,body').animate({scrollTop: $(this).offset().top}, 200);
 	$('#phq-survey').show();
 });
 
 $('#phq-submit, #skip-phq').on('click', function() {
 	$('#phq-survey').hide();
+	$('html,body').animate({scrollTop: $(this).offset().top}, 200);
 	$('#skin-quiz').show();
 });
 
 $('#skin-submit, #skip-skin-quiz').on('click', function() {
 	$('#skin-quiz').hide();
+	$('html,body').animate({scrollTop: $(this).offset().top}, 800);
 	$('#skin-picture').show();
+	canvas = document.getElementById("canvas"),
+		context = canvas.getContext("2d"),
+		video = document.getElementById("video"),
+		videoObj = { "video": true },
+		errBack = function(error) {
+			console.log("Video capture error: ", error.code); 
+		};
+
+	if(navigator.getUserMedia) { 
+		navigator.getUserMedia(videoObj, function(stream) {
+			video.src = stream;
+			video.play();
+		}, errBack);
+	} else if(navigator.webkitGetUserMedia) { 
+		navigator.webkitGetUserMedia(videoObj, function(stream){
+			video.src = window.webkitURL.createObjectURL(stream);
+			video.play();
+		}, errBack);
+	}
+	else if(navigator.mozGetUserMedia) {
+		navigator.mozGetUserMedia(videoObj, function(stream){
+			video.src = window.URL.createObjectURL(stream);
+			video.play();
+		}, errBack);
+	}
+
+	$('#take-pic').on('click', function() {
+		context.drawImage(video, 0, 0, 640, 480);
+		serverObject.skinpic = canvas.toDataURL();
+	});
 });
 
 $('#skin-pic-submit, #skip-skin-pic').on('click', function() {
 	$('#skin-picture').hide();
+	$('html,body').animate({scrollTop: $(this).offset().top}, 200);
 	$('#obesity-quiz').show();
 });
 
+$('#obesity-submit, #skip-obesity').on('click', function() {
+	$('#obesity-quiz').hide();
+	$('html,body').animate({scrollTop: $(this).offset().top}, 200);
+	$('#results').show();
+});
 if (io) {
   var socket = io.connect('/');
   socket.on('connected', function (res) {
