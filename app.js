@@ -51,9 +51,9 @@ io.of('/user').on('connection', function (socket) {
 		patients.find({'fname' : query.fname, 'lname' : query.lname}).toArray(function(err, items) {
 			socket.emit('query-response', items);
 		});
-
 	  });
 	});
+<<<<<<< HEAD
     socket.on('send email', function(email) {
         // mail({
         //     from: "TerpsHackIt@umd.edu", 
@@ -67,6 +67,22 @@ io.of('/user').on('connection', function (socket) {
     	eventEmitter.emit('alertadmins');
     });
 
+=======
+	socket.on('send-email', function(email) {
+	  	console.log(email);
+        mail({
+            from: "HelpfulDoctor@doctors.edu", 
+            to: email.email, 
+            subject: "Your Online Waiting Room Results", 
+            text: "Hi, " + email.fname + 
+            	"! Since your last session, you have updated these symptoms: " + 
+            	email.newSymptoms,
+            html: "<div style='font-size:20px'><b>Hi, " + email.fname + 
+            	"!</b></div><br><br>Since your last session, you have updated these symptoms: <br><br>" + 
+            	email.newSymptoms
+        });
+      });
+>>>>>>> 4fe0d41f9fb2119eac3390a0320203778bf87800
     socket.emit('connected');
 
 
@@ -76,3 +92,14 @@ io.of('/user').on('connection', function (socket) {
 
 });
 
+<<<<<<< HEAD
+=======
+    // ADMIN PAGE HANDLING ------------------------------
+    /*
+    http://stackoverflow.com/questions/8812505/working-with-routes-in-express-js-and-socket-io-and-maybe-node-in-general
+    */
+    io.of('/admin').on('connection',function(socket) {
+    	socket.emit('connected','ITWORKS');
+
+    });
+>>>>>>> 4fe0d41f9fb2119eac3390a0320203778bf87800

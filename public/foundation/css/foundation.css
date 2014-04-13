@@ -3319,14 +3319,15 @@ blockquote p {
   .reveal-modal > :last-child {
     margin-bottom: 0; }
   .reveal-modal .close-reveal-modal {
-    font-size: 1.375rem;
+/*    font-size: 1.375rem;
     line-height: 1;
     position: absolute;
     top: 0.5rem;
     right: 0.6875rem;
     color: #aaaaaa;
     font-weight: bold;
-    cursor: pointer; }
+    cursor: pointer; */
+  }
 
 @media only screen and (min-width: 40.063em) {
   .reveal-modal {
