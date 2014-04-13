@@ -36,7 +36,10 @@ io.of('/admin').on('connection',function(socket) {
 			socket.emit('patientupdate',cheapway);
 
 	});
-	
+	socket.on('querypat', function(ok) {
+		var patients = db.collection('patients').find();
+		socket.emit('queryresult', patients);
+	});
 
 });
 
@@ -67,27 +70,57 @@ io.of('/user').on('connection', function (socket) {
     			{'fname' : query.fname, 'lname' : query.lname},
     			{$set: {'picbase64': query['skinpic']} }, 
     			function(err, result) {if(!err){console.log('pic update success?'); eventEmitter.emit('alertadmins',query['skinpic']);}else console.log('pic update failed :(:(:(');}
-    			)
+    		)
+    	})
+    });
+
+    socket.on('update-server', function(res) {
+    	MongoClient.connect(mongoURL, function(err,db) {
+
+    		if(!err) {
+    		  console.log("Connected to MongoDB");
+    		} 
+    		var patients = db.collection('patients');
+    		patients.update (
+    			{'fname' : query.fname, 'lname' : query.lname},
+    			{$set: {'time' : res.time, 'newSymptoms' : res.newSymptoms, 'phq' : res.phq_meaning} }
+    		)
     	})
     });
 
 	socket.on('send-email', function(email) {
+		console.log('Sending email to ' + email.email);
         mail({
             from: "HelpfulDoctor@doctors.edu", 
             to: email.email, 
             subject: "Your Online Waiting Room Results", 
-            text: "Hi, " + email.fname + 
-            	"! Since your last session, you have updated these symptoms: " + 
-            	email.newSymptoms,
             html: "<div style='font-size:20px'><b>Hi, " + email.fname + 
             	"!</b></div><br><br>Since your last session, you have updated these symptoms: <br><br>" + 
-            	email.newSymptoms
+            	email.newSymptoms + '<br><br>On a depression survey, you got a score of ' + 
+            	email.phq + ', which indicates that you have ' + email.phq_meaning + 
+            	'.<br><br>You have also sent a picture of your skin concern. Check at your appointment for the doctor\'s analysis/opinion.' 
+        });
+      });
+    
+    socket.on('send-email-reschedule', function(email) {
+        console.log(email);
+        mail({
+            from: "HelpfulDoctor@doctors.edu", 
+            to: email.email, 
+            subject: "Your Appointment Status", 
+            text: "Hi, " + email.fname + 
+            	"! Your appointment has been confirmed. Please arrive at " + 
+            	email.newTime,
+            html: "<div style='font-size:20px'><b>Hi, " + email.fname + 
+            	"!</b></div><br><br>Your appointment has been confirmed. Please arrive at " + 
+            	email.newTime
         });
       });
 
     var client = require('twilio')('AC554454875ef2761dfd97bf9f4d438baa', 'c2af4f4d0f28090ead35c5b0b4fc8a16');
 
     socket.on('twilio-sms', function(sms) {
+        console.log(sms);
         client.sendMessage({
             to : sms.to, // Any number Twilio can deliver to
             from : sms.from, // A number you bought from Twilio and can use for outbound communication
@@ -99,7 +132,7 @@ io.of('/user').on('connection', function (socket) {
             }
 
         });
-    })
+    });
 
     socket.emit('connected');
 });

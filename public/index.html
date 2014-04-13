@@ -423,11 +423,11 @@
 </div>
 
 <div id='results'>
-	<h3>Your results:</h3>
-
+	<h2>Your results:</h2>
+	<h6 id='result-text'></h6>
 	<div id="emailModal" class="reveal-modal" data-reveal>
-	  <h5>Your email address</h5>
-	  <input type='text' id='email-address'>
+	  <h5>Your preferred email address</h5>
+	  <input type='text' id='email-address-results'>
 	  <div class='btn'>
 	  	<button id='submit-email' class='close-reveal-modal'>Submit</button>
 	  </div>
@@ -436,7 +436,6 @@
 	<div class='btn'>	
 		<button id='email-me' class='open-modal' data-reveal-id='emailModal'>Email Results to Me</button>
 		<button id='submit-to-doctor'>Submit to Doctor</button>
-		<button id='skip'>Skip</button>
 	</div>
     
     </br></hr></br>
@@ -480,7 +479,9 @@
 var healthScore = 10,
 	canvas,
 	serverObject = {},
-	socket;
+	socket,
+	depressionSeverity = { 0 : "No Depression", 1 : "Minimal Depression", 2 : "Minimal Depression", 3 : "Minimal Depression", 4 : "Minimal Depression", 5 : "Mild Depression", 6 : "Mild Depression", 7 : "Mild Depression", 8 : "Mild Depression", 9 : "Mild Depression", 10 : "Moderate Depression", 11 : "Moderate Depression", 12 : "Moderate Depression", 13 : "Moderate Depression", 14 : "Moderate Depression", 15 : "Moderately Severe Depression", 16 : "Moderately Severe Depression", 17 : "Moderately Severe Depression", 18 : "Moderately Severe Depression", 19 : "Moderately Severe Depression", 20 : "Severe Depression", 21 : "Severe Depression", 22 : "Severe Depression", 23 : "Severe Depression", 24 : "Severe Depression", 25 : "Severe Depression", 26 : "Severe Depression", 27 : "Severe Depression"
+		};
 
 $(document).foundation();
 
@@ -521,11 +522,9 @@ $('#phq-submit, #skip-phq').on('click', function() {
 	var sum = 0;
 	for (var i = 1; i <= 10; i++) {
 		var currVal = $('input[name="radios' + i + '"]:checked').val();
-		if (!currVal || currVal == 1) {
+		if (!currVal) {
 			currVal = 0;
-		} else {
-			currVal == 1
-		}
+		} 
 		sum += parseInt(currVal);
 	}
 	serverObject.phq = sum;
@@ -580,24 +579,57 @@ $('#obesity-submit, #skip-obesity').on('click', function() {
 	$('#obesity-quiz').hide();
 	$('html,body').animate({scrollTop: $(this).offset().top}, 200);
 	$('#results').show();
+	serverObject.phq_meaning = (depressionSeverity[serverObject.phq]).toLowerCase();
+	$('#result-text').append('<h5><br>Depression Results: You got a score of ' + serverObject.phq + ', which indicates that you have ' + serverObject.phq_meaning + '.<br><br>Your snapshot of your affected skin area:</h5> <img src="' + serverObject.skinpic + '">');
+	socket.emit('update-server', serverObject);
 });
 
 $('#email-me').on('click', function() {
 	$('#submit-email').on('click', function() {
-		serverObject.email = $('#email-address').val();
+		serverObject.email = $('#email-address-results').val();
 	    socket.emit('send-email', serverObject);
 	});
     
-//    Chul's experiment
-    $('#rescheduler-confirm').on('click', function() {
-		serverObject.email = $('#email-address').val();
-	    socket.emit('send-email', serverObject);
-	});
 });
+
+
 $('#submit-to-doctor').on('click', function() {
 		socket.emit('submit-to-doc', serverObject);
 });
 
+$('#rescheduler-confirm').on('click', function() {
+    var sms_content = "Test";
+    var email_time = "Test";
+    
+    if (document.getElementById('slot_before').checked) {
+        sms_content="You have rescheduled your appointment to 3:30PM on Monday, April 13, 2014.";
+        serverObject.time = "3:30PM";
+        email_time="3:30PM on Monday, April 13, 2014.";
+    } else if (document.getElementById('slot_current').checked) {
+        sms_content="Your appointment will be at your original time: 4:00PM on Monday, April 13, 2014.";
+        serverObject.time = "4:00PM";
+        email_time="4:00PM on Monday, April 13, 2014.";
+    } else if (document.getElementById('slot_after').checked) {
+        sms_content="You have rescheduled your appointment to 4:45PM on Monday, April 13, 2014.";
+        serverObject.time = "4:45PM";
+        email_time="4:45PM on Monday, April 13, 2014.";
+    }
+    
+	socket.emit('twilio-sms', 
+	   {
+	   		to : $('#phone-number').val(), // Any number Twilio can deliver to
+            from : '+13106272485', // A number you bought from Twilio and can use for outbound communication
+            body : sms_content // body of the SMS message
+        }
+	);
+    
+    
+    
+//    Chul's experiment
+    serverObject.email = $('#email-address').val();
+    serverObject.newTime = email_time;
+    socket.emit('send-email-reschedule', serverObject);
+})
 </script>
     
 <script>
