@@ -16,7 +16,7 @@
 		margin-left:20px;
 	}
 
-	#phq-survey, #skin-quiz, #skin-picture, #obesity-quiz, #symptoms, #results {
+	#phq-survey, #skin-quiz, #skin-picture, #obesity-quiz, #symptoms, #results, #previous-input {
 		display: none;
 	}
 
@@ -112,6 +112,15 @@ tr {height:80px;}
 	</div>
 </div>
 
+<div id='previous-input'>
+	<h4>Your most up-to-date information:</h4>
+	<br>
+	<div id='previous-input-text'></div>
+	<div class='btn'>
+		<button id='previous-input-next'>Next</button>
+	</div>
+</div>
+
 <div id='phq-survey'>
 	<p style="font-family:verdana;color:#3090C7;font-size:24px;">Over the last two weeks, how often have you been bothered by any of the following problems?<br>
 
@@ -122,7 +131,7 @@ tr {height:80px;}
 		<tr>
 		  <td><div style="width: 50px"><div class="numberCircle">1</div></div></td>
 		  <td>Little interest or pleasure in doing things</td> 
-		  <td><div style="width: 500px">
+		  <td><div style="width: 800px">
 		  	<input type="radio" id="radio1" name="radios1" value="0">
 		       <label for="radio1">Not at all</label>
 		    <input type="radio" id="radio2" name="radios1"value="1">
@@ -453,8 +462,17 @@ if (io) {
 }
 $('#sign-in').on('click', function() {
 	socket.emit('query', { 'fname' : $('input[name="fname"]').val(), 'lname' : $('input[name="lname"]').val() });
-	$('#name-input').hide();
-	$('html,body').animate({scrollTop: $(this).offset().top}, 200);
+	socket.on('query-response', function(res) {
+		var person = res[0];
+		$('#previous-input-text').append("<h5><strong>First name:</strong> " + person.fname + "<br><strong>Last name:</strong> " + person.lname + "<br><strong>Date of birth:</strong> " + person.DOB + "<br><strong>Age:</strong> " + person.age + "<br><strong>Sex:</strong> " + person.sex + "<br><strong>Illness:</strong> " + person.illness + "<br><strong>Symptoms:</strong> " + person.symptoms.join(", ") + "</h5>");
+		$('#name-input').hide();
+		$('html,body').animate({scrollTop: $('html,body').offset().top}, 200);
+		$('#previous-input').show();
+	});
+});
+
+$('#previous-input-next').on('click', function() {
+	$('#previous-input').hide();
 	$('#symptoms').show();
 });
 

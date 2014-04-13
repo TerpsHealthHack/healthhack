@@ -24,7 +24,6 @@ io.sockets.on('connection', function (socket) {
 	    console.log("Connected to MongoDB");
 	  } 
 	  socket.on('query', function(query) {
-	  	console.log('got a query!');
 		var patients = db.collection('patients');
 		patients.find({'fname' : query.fname, 'lname' : query.lname}).toArray(function(err, items) {
 			socket.emit('query-response', items);
