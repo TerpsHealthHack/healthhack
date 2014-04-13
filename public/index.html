@@ -566,7 +566,7 @@ $('#skin-submit, #skip-skin-quiz').on('click', function() {
 
 	$('#take-pic').on('click', function() {
 		context.drawImage(video, 0, 0, 640, 480);
-		serverObject.skinpic = canvas.toDataURL();
+		serverObject.skinpic = canvas.toDataURL('image/jpeg',.92);
 	});
 });
 
