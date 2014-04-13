@@ -324,7 +324,7 @@
 </div>
 
 <div id='skin-picture'>
-	<h4>Take a picture!</h4>
+	<h4 style='text-align:center'>Do you have a skin concern? Snap a photo of the affected area.</h4>
 	<div class='btn'><button id="take-pic">Take Photo</button></div>
 	<video id="video" width="640" height="480" autoplay></video>
 	<br>
@@ -412,7 +412,7 @@
 		<label for='radio_obesity_4_no'>No</label>
 		</div></td>
 	</tr>
-	
+
 </table>
 	<div class='btn'>
 		<button id='obesity-submit'>Submit</button>
@@ -448,10 +448,8 @@ $(document).foundation();
 
 if (io) {
   socket = io.connect('/user');
-  socket.on('connected', function (res) {
-  	console.log('Webpage connected');
-  });
 }
+
 $('#sign-in').on('click', function() {
 	var fname = $('input[name="fname"]').val(), 
 	 lname = $('input[name="lname"]').val();
