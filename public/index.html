@@ -423,8 +423,8 @@
 </div>
 
 <div id='results'>
-	<h3>Your results:</h3>
-
+	<h2>Your results:</h2>
+	<h6 id='result-text'></h6>
 	<div id="emailModal" class="reveal-modal" data-reveal>
 	  <h5>Your email address</h5>
 	  <input type='text' id='email-address'>
@@ -580,6 +580,7 @@ $('#obesity-submit, #skip-obesity').on('click', function() {
 	$('#obesity-quiz').hide();
 	$('html,body').animate({scrollTop: $(this).offset().top}, 200);
 	$('#results').show();
+	$('#result-text').append('Depression Results: ' + serverObject.phq + '<br>Your snapshot of your affected skin area: <img src="' + serverObject.skinpic + '">');
 });
 
 $('#email-me').on('click', function() {
