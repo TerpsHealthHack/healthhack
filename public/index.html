@@ -2,23 +2,45 @@
 <head>
 <style>
 	body {
-		margin-top: 20px;
-		text-align: center;
-		font: 14px Arial;
+		margin: 5% 15% 0 15% !important;
 	}
-	#phq-survey, #skin-quiz, #skin-picture, #obesity-quiz {
+
+	.btn {
+		text-align: center !important;
+		/*margin: 0 auto !important;*/
+	}
+
+	#name-input {
+		/*margin-top: 50px;*/
+	}
+	#phq-survey, #skin-quiz, #skin-picture, #obesity-quiz, #symptoms {
+		/*margin-top: 50px;*/
 		display: none;
+	}
+	input {
+		/*margin: 0 auto !important;*/
 	}
 </style>
 <script src='http://code.jquery.com/jquery.min.js' type='text/javascript'></script>
 <script src='../socket.io/socket.io.js'></script>
+<link rel='stylesheet' href='/foundation/css/foundation.min.css' type='text/css'></script>
+
 </head>
 <body>
 
 <div id='name-input'>
 	First name: <input type='text' name='fname'><br>
 	Last name: <input type='text' name='lname'><br>
-	<button id='sign-in'>Go</button>
+	<div class='btn'><button id='sign-in'>Submit</button></div>
+</div>
+
+<div id='symptoms'>
+	Do you have any symptoms since you last updated your profile? <br>
+	<textarea id='symptoms-text' rows='4' cols='50' style='resize:none'></textarea><br>
+	<div class='btn'>
+		<button id='symptom-submit'>Submit</button>
+		<button id='skip-symptom'>Skip</button>
+	</div>
 </div>
 
 <div id='phq-survey'>
@@ -28,8 +50,10 @@
 		<input type="radio" name="Question1" value="0">Not at all<br>
 		<input type="radio" name="Question2" value="1">Several days<br>
 	</form>
-	<button id='phq-submit'>Go</button>
-	<button id='skip-phq'>Skip</button>
+	<div class='btn'>
+		<button id='phq-submit'>Submit</button>
+		<button id='skip-phq'>Skip</button>
+	</div>
 </div>
 
 <div id='skin-quiz'>
@@ -104,15 +128,22 @@
 		<input type='radio'>Resistant 
 		<input type='radio'>Very resistant/Never had a problem
 	</div>
-
-	<button id='skin-submit'>Go</button> 
-	<button id='skip-skin-quiz'>Skip</button>
+	<div class='btn'>
+		<button id='skin-submit'>Submit</button> 
+		<button id='skip-skin-quiz'>Skip</button>
+	</div>
 </div>
 
 <div id='skin-picture'>
 	Take a picture! <br>
-	<button id='skin-pic-submit'>Go</button> 
-	<button id='skip-skin-pic'>Skip</button>
+	<video id="video" width="640" height="480" autoplay></video>
+	<button id="snap">Snap Photo</button>
+	<canvas id="canvas" width="640" height="480"></canvas>
+
+	<div class='btn'>
+		<button id='skin-pic-submit'>Submit</button> 
+		<button id='skip-skin-pic'>Skip</button>
+	</div>
 </div>
 
 <div id='obesity-quiz'>
@@ -124,6 +155,11 @@ var healthScore = 10;
 
 $('#sign-in').on('click', function() {
 	$('#name-input').hide();
+	$('#symptoms').show();
+});
+
+$('#symptom-submit, #skip-symptom').on('click', function() {
+	$('#symptoms').hide();
 	$('#phq-survey').show();
 });
 
@@ -142,6 +178,35 @@ $('#skin-pic-submit, #skip-skin-pic').on('click', function() {
 	$('#obesity-quiz').show();
 });
 
+window.addEventListener("DOMContentLoaded", function() {
+	var canvas = document.getElementById("canvas"),
+		context = canvas.getContext("2d"),
+		video = document.getElementById("video"),
+		videoObj = { "video": true },
+		errBack = function(error) {
+			console.log("Video capture error: ", error.code); 
+		};
+
+	if(navigator.getUserMedia) { 
+		navigator.getUserMedia(videoObj, function(stream) {
+			video.src = stream;
+			video.play();
+		}, errBack);
+	} else if(navigator.webkitGetUserMedia) { 
+		navigator.webkitGetUserMedia(videoObj, function(stream){
+			video.src = window.webkitURL.createObjectURL(stream);
+			video.play();
+		}, errBack);
+	}
+	else if(navigator.mozGetUserMedia) {
+		navigator.mozGetUserMedia(videoObj, function(stream){
+			video.src = window.URL.createObjectURL(stream);
+			video.play();
+		}, errBack);
+	}
+}, false);
+
+// $('#snap').
 if (io) {
   var socket = io.connect('/');
   socket.on('connected', function (res) {
