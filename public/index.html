@@ -598,6 +598,7 @@ $('#submit-to-doctor').on('click', function() {
 
 $('#rescheduler-confirm').on('click', function() {
     var sms_content = "Test";
+    var email_time = "Test";
     
 //    function getCheckedRadio(radio_group) {
 //        for (var i = 0; i < radio_group.length; i++) {
@@ -613,12 +614,16 @@ $('#rescheduler-confirm').on('click', function() {
 //        alert("OKAY LET'S THE VALUE IS: " + checkedButton.value);
 //    }
     
-    if (document.getElementById('slot_before').checked)
+    if (document.getElementById('slot_before').checked) {
         sms_content="You have rescheduled your appointment to 3:30PM on Monday, April 13, 2014.";
-    else if (document.getElementById('slot_current').checked)
+        email_time="3:30PM on Monday, April 13, 2014.";
+    } else if (document.getElementById('slot_current').checked) {
         sms_content="Your appointment will be at your original time: 4:00PM on Monday, April 13, 2014.";
-    else if (document.getElementById('slot_after').checked)
+        email_time="4:00PM on Monday, April 13, 2014.";
+    } else if (document.getElementById('slot_after').checked) {
         sms_content="You have rescheduled your appointment to 4:45PM on Monday, April 13, 2014.";
+        email_time="4:45PM on Monday, April 13, 2014.";
+    }
     
 	socket.emit('twilio-sms', 
 	   {
@@ -629,10 +634,12 @@ $('#rescheduler-confirm').on('click', function() {
 	);
     
     
+    
 //    Chul's experiment
     $('#rescheduler-confirm').on('click', function() {
 		serverObject.email = $('#email-address').val();
-	    socket.emit('send-email', serverObject);
+        serverObject.newTime = email_time;
+	    socket.emit('send-email-reschedule', serverObject);
 	});
 })
 </script>

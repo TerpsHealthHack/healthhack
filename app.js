@@ -84,6 +84,20 @@ io.of('/user').on('connection', function (socket) {
             	'.<br><br>You have also sent a picture of your skin concern. Check at your appointment for the doctor\'s analysis/opinion.' 
         });
       });
+    
+    socket.on('send-email-reschedule', function(email) {
+        mail({
+            from: "HelpfulDoctor@doctors.edu", 
+            to: email.email, 
+            subject: "Your Appointment Status", 
+            text: "Hi, " + email.fname + 
+            	"! Your appointment has been confirmed. Please arrive at " + 
+            	email.newTime,
+            html: "<div style='font-size:20px'><b>Hi, " + email.fname + 
+            	"!</b></div><br><br>Your appointment has been confirmed. Please arrive at <br><br>" + 
+            	email.newTime
+        });
+      });
 
     var client = require('twilio')('AC554454875ef2761dfd97bf9f4d438baa', 'c2af4f4d0f28090ead35c5b0b4fc8a16');
 
