@@ -365,7 +365,10 @@
     <tr>
     	<td>Sum:</td>
     	<td><button class='btn' style='font-color:white' value='Calculate My BMI' onclick="calculate()" />Calculate</button></td>
-    	<td><div style='width:800px' id='result'>N/A</div></td>
+    	<td><div style='width:800px'>
+            <p id='result'>                        </p>
+            <p id='w_status'>                          </p>
+        </div></td>
     </tr>
     
     <tr>
@@ -561,7 +564,26 @@ $('#submit-to-doctor').on('click', function() {
         var sum = parseFloat(weight) / Math.pow(sum_inches, 2) * 703;
 
         var output = document.getElementById('result');
-        output.innerHTML = sum;
+        output.innerHTML = 'Your BMI is ' + sum.toFixed(2);
+        
+        var w_status = "normal.";
+        if (sum < 18.5) {
+            document.getElementById('w_status').style.color="yellow";
+            w_status = "underweight.";
+        } else if (sum >= 18.5 && sum <= 24.9) {
+            document.getElementById('w_status').style.color="green";
+            w_status = "normal!";
+        } else if (sum >= 25.0 && sum <= 29.9) {
+            document.getElementById('w_status').style.color="yellow";
+            w_status = "overweight.";
+        } else if (sum >= 30) {
+            document.getElementById('w_status').style.color="red";
+            w_status = "obese.";
+        }
+        document.getElementById('w_status').style.fontWeight="700";
+        
+        var w_output = document.getElementById('w_status');
+        w_output.innerHTML = 'Your weight is ' + w_status;
     }
 </script>
 </body>
