@@ -9,7 +9,12 @@ var mail = require("nodemailer").mail
 server.listen(process.env.PORT || 8080);
 
 app.use(express.static(__dirname + '/public'));
+app.get('/:file', function (req, res) {
+    var file = req.params.file;
 
+    res.sendfile('public/' + file + '.html');
+
+});
 var mongoURL = process.env.MONGOHQ_URL;
 
 
