@@ -85,7 +85,9 @@ table
 {
 border-collapse:collapse;
 }
-tr {height:80px;}
+tr {
+    height:80px;
+}
 
 </style>
 
@@ -270,77 +272,139 @@ tr {height:80px;}
 </div>
 
 <div id='skin-quiz'>
-	<div class='question'>
-		Your eye color is: <br><br>
-		<input type='radio'>Light blue, light gray, or light green
-		<input type='radio'> Blue, gray, or green
-		<input type='radio'>Hazel or light brown
-		<input type='radio'>Dark brown
-		<input type='radio'>Brownish black
-	</div>
+    <table align="center" cellpadding="10" width="800">
+        <tr>
+            <td><div class='numberCircle'>1</div></td>
+            <td>Your eye color is: </td>
+            <td><input type='radio' id="radio41" name="radios11" value="0">
+                <label for="radio41">Light blue, light gray, or light green</label>
+            <input type='radio' id="radio42" name="radios11" value="0"> 
+                <label for="radio42">Blue, gray, or green</label>
+            <input type='radio' id="radio43" name="radios11" value="0">
+                <label for="radio43">Hazel or light brown</label>
+            <input type='radio' id="radio44" name="radios11" value="0">
+                <label for="radio44">Dark brown</label>
+            <input type='radio' id="radio45" name="radios11" value="0">
+                <label for="radio45">Brownish black</label>
+                </td>
+        </tr>
+        
+        <tr>
+            <td><div class='numberCircle'>2</div></td>
+            <td>Your natural hair color is: </td>
+            <td><input type='radio' id="radio46" name="radios12" value="0">
+                <label for="radio46">Red or light blonde</label>
+            <input type='radio' id="radio47" name="radios12" value="0"> 
+                <label for="radio47">Blonde</label>
+            <input type='radio' id="radio48" name="radios12" value="0">
+                <label for="radio48">Dark blonde or light brown</label>
+            <input type='radio' id="radio49" name="radios12" value="0">
+                <label for="radio49">Dark brown</label>
+            <input type='radio' id="radio50" name="radios12" value="0">
+                <label for="radio49">Black</label>
+            </td>
+        </tr>
+        
+        <tr>
+            <td><div class='numberCircle'>3</div></td>
+            <td>Your natural skin color (before sun exposure) is: </td>
+            <td><input type='radio' id="radio51" name="radios13" value="5">
+                <label for="radio51">Ivory white </label>
+            <input type='radio' id="radio42" name="radios13" value="4"> 
+                <label for="radio52">Fair or pale</label>
+            <input type='radio' id="radio53" name="radios13" value="3">
+                <label for="radio53">Fair to beige, with golden undertone</label>
+            <input type='radio' id="radio54" name="radios13" value="2">
+                <label for="radio54">Olive or light brown</label>
+            <input type='radio' id="radio55" name="radios13" value="1">
+                <label for="radio55">Dark brown or black</label>
+            </td>
+        </tr>
+   
+        <tr>
+            <td><div class='numberCircle'>4</div></td>
+            <td>How many freckles do you have on unexposed areas of your skin? </td>
+            <td><input type='radio' id="radio56" name="radios14" value="5">
+                <label for="radio56">Many </label>
+            </td>
+            <td><input type='radio' id="radio57" name="radios14" value="4"> 
+                <label for="radio57">Several</label>
+            </td>
+            <td><input type='radio' id="radio58" name="radios14" value="3">
+                <label for="radio58">A few</label>
+            </td>
+            <td><input type='radio' id="radio59" name="radios14" value="2">
+                <label for="radio59">Very few</label>
+            </td>
+            <td><input type='radio' id="radio60" name="radios14" value="1">
+                <label for="radio60">None</label>
+            </td>
+        </tr>
 
-	<div class='question'>
-		Your natural hair color is: <br><br>
-		<input type='radio'>Red or light blonde 
-		<input type='radio'>Blonde 
-		<input type='radio'>Dark blonde or light brown 
-		<input type='radio'>Dark brown 
-		<input type='radio'>Black 
-	</div>
+        <tr>
+            <td><div class='numberCircle'>5</div></td>
+            <td>How does your skin respond to the sun? </td>
+            <td><input type='radio' id="radio61" name="radios15" value="5">
+                <label for="radio61">Always burns, blisters and peels </label>
+            <input type='radio' id="radio62" name="radios15" value="4"> 
+                <label for="radio62">Often burns, blisters and peels</label>
+            <input type='radio' id="radio63" name="radios15" value="3">
+                <label for="radio63">Burns moderately</label>
+            <input type='radio' id="radio64" name="radios15" value="2">
+                <label for="radio64">Burns rarely, if at all</label>
+            <input type='radio' id="radio65" name="radios15" value="1">
+                <label for="radio65">Never burns</label>
+            </td>
+        </tr>
 
-	<div class='question'>
-		<br>Your natural skin color (before sun exposure) is: <br><br>
-		<input type='radio'>Ivory white 
-		<input type='radio'>Fair or pale 
-		<input type='radio'>Fair to beige, with golden undertone 
-		<input type='radio'>Olive or light brown 
-		<input type='radio'>Dark brown or black 
-	</div>
+        <tr>
+            <td><div class='numberCircle'>6</div></td>
+            <td>Does your skin tan? </td>
+            <td><input type='radio' id="radio66" name="radios16" value="5">
+                <label for="radio66">Never -- I always burn </label>
+            <input type='radio' id="radio67" name="radios16" value="4"> 
+                <label for="radio67">Seldom</label>
+            <input type='radio' id="radio68" name="radios16" value="3">
+                <label for="radio68">Sometimes</label>
+            <input type='radio' id="radio69" name="radios16" value="2">
+                <label for="radio69">Often</label>
+            <input type='radio' id="radio70" name="radios16" value="1">
+                <label for="radio70">Always</label>
+            </td>
+        </tr>
 
-	<div class='question'>
-		<br>How many freckles do you have on unexposed areas of your skin?<br><br>
-		<input type='radio'>Many 
-		<input type='radio'>Several 
-		<input type='radio'>A few 
-		<input type='radio'>Very few 
-		<input type='radio'>None
-	</div> 
+        <tr>
+            <td><div class='numberCircle'>7</div></td>
+            <td>How deeply do you tan?</td>
+            <td><input type='radio' id="radio71" name="radios17" value="5">
+                <label for="radio71">My skin is naturally black </label>
+            <input type='radio' id="radio72" name="radios17" value="4"> 
+                <label for="radio72">Deeply</label>
+            <input type='radio' id="radio73" name="radios17" value="3">
+                <label for="radio73">Moderately</label>
+            <input type='radio' id="radio74" name="radios17" value="2">
+                <label for="radio74">Lightly</label>
+            <input type='radio' id="radio75" name="radios17" value="1">
+                <label for="radio75">Not at all or very dark</label>
+            </td>
+        </tr>
 
-	<div class='question'>
-		<br>How does your skin respond to the sun?<br><br>
-		<input type='radio'>Always burns, blisters and peels 
-		<input type='radio'>Often burns, blisters and peels 
-		<input type='radio'>Burns moderately 
-		<input type='radio'>Burns rarely, if at all 
-		<input type='radio'>Never burns 
-	</div>
-
-	<div class='question'>
-		<br>Does your skin tan?<br><br>
-		<input type='radio'>Never -- I always burn
-		<input type='radio'>Seldom 
-		<input type='radio'>Sometimes 
-		<input type='radio'>Often 
-		<input type='radio'>Always 
-	</div>
-
-	<div class='question'>
-		<br>How deeply do you tan?<br><br>
-		<input type='radio'>Not at all or very little 
-		<input type='radio'>Lightly 
-		<input type='radio'>Moderately 
-		<input type='radio'>Deeply 
-		<input type='radio'>My skin is naturally dark 
-	</div>
-
-	<div class='question'>
-		<br>How sensitive is your face to the sun?<br><br>
-		<input type='radio'>Very sensitive 
-		<input type='radio'>Sensitive 
-		<input type='radio'>Normal 
-		<input type='radio'>Resistant 
-		<input type='radio'>Very resistant/Never had a problem
-	</div>
+        <tr>
+            <td><div class='numberCircle'>8</div></td>
+            <td>How sensitive is your face to the sun? </td>
+            <td><input type='radio' id="radio76" name="radios18" value="5">
+                <label for="radio76">Very sensitive </label>
+            <input type='radio' id="radio77" name="radios18" value="4"> 
+                <label for="radio77">Sensitive</label>
+            <input type='radio' id="radio78" name="radios18" value="3">
+                <label for="radio78">Normal</label>
+            <input type='radio' id="radio79" name="radios18" value="2">
+                <label for="radio79">Resistant</label>
+            <input type='radio' id="radio80" name="radios18" value="1">
+                <label for="radio80">Very resistant/Never had a problem</label>
+            </td>
+        </tr>
+    </table>
 
 	<div class='btn'>
 		<button id='skin-submit'>Submit</button> 
@@ -362,6 +426,23 @@ tr {height:80px;}
 </div>
 
 <div id='obesity-quiz'>
+    <table align="center" cellpadding="10" width="800">
+        <tr>
+            <td><div class='numberCircle'>1</div></td>
+            <td>Do you exercise less than three times a week? </td>
+            <td><input type='radio' id="radio_o_1" name="radios_obesity_1" value="1">
+                <label for="radio76">Very sensitive </label>
+            <input type='radio' id="radio77" name="radios18" value="4"> 
+                <label for="radio77">Sensitive</label>
+            <input type='radio' id="radio78" name="radios18" value="3">
+                <label for="radio78">Normal</label>
+            <input type='radio' id="radio79" name="radios18" value="2">
+                <label for="radio79">Resistant</label>
+            <input type='radio' id="radio80" name="radios18" value="1">
+                <label for="radio80">Very resistant/Never had a problem</label>
+            </td>
+        </tr>
+        
     <div class='question'>
 		Do you exercise less than twice a week? <br>
 		<input type='radio'>Yes
@@ -382,19 +463,7 @@ tr {height:80px;}
     <table><tr><td>Sum:</td><td><div id="result">N/A</div></td></tr></table>
     <input type=button value='Calculate My BMI' onclick="calculate()" />
     
-    <div class='question'>
-		Do you have a waist measurement of 40 inches or more if male, or 35 inches or more if female? <br>
-		<input type='radio'>Yes
-		<input type='radio'>No
-	</div>
-    
     <hr>
-    
-    <div class='question'>
-		Do you have a "spare tire" or apple-shaped body? <br>
-		<input type='radio'>Yes
-		<input type='radio'>No
-	</div>
     
     <div class='question'>
 		Do you have a family history of heart disease, diabetes, obesity or hypertension? <br>
