@@ -9,6 +9,10 @@ var mail = require("nodemailer").mail
 server.listen(process.env.PORT || 8080);
 
 app.use(express.static(__dirname + '/public'));
+
+/*
+http://stackoverflow.com/questions/16949807/how-do-i-get-node-js-to-return-pages-without-file-extensions
+*/
 app.get('/:file', function (req, res) {
     var file = req.params.file;
 
@@ -18,7 +22,7 @@ app.get('/:file', function (req, res) {
 var mongoURL = process.env.MONGOHQ_URL;
 
 
-io.sockets.on('connection', function (socket) {
+io.of('/user').on('connection', function (socket) {
 	MongoClient.connect(mongoURL, function(err, db) {
 	  if(!err) {
 	    console.log("Connected to MongoDB");
@@ -40,4 +44,19 @@ io.sockets.on('connection', function (socket) {
         // });
     });
     socket.emit('connected');
+
+
+
+
+
+
 });
+
+    // ADMIN PAGE HANDLING ------------------------------
+    /*
+    http://stackoverflow.com/questions/8812505/working-with-routes-in-express-js-and-socket-io-and-maybe-node-in-general
+    */
+    io.of('/admin').on('connection',function(socket) {
+    	socket.emit('connected','ITWORKS');
+
+    });

@@ -454,7 +454,7 @@ var healthScore = 10,
 	socket;
 
 if (io) {
-  socket = io.connect('/');
+  socket = io.connect('/user');
   socket.on('connected', function (res) {
   	var email = { "toEmail": "alexacgreenberg@gmail.com" ,"healthScore" : healthScore};
     socket.emit('send email', email);
