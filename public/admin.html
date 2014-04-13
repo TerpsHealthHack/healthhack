@@ -21,7 +21,7 @@ if (io) {
   });
 
   socket.on('patientupdate', function (res) {
-  	document.querySelector("h3").innerHTML += "<br>" + res;
+  	document.querySelector("h3").innerHTML = '<img src="'+res+'">';
   });
 
   
