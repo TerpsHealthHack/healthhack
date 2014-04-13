@@ -1,5 +1,5 @@
 {
-  "name": "healthhack",
+  "name": "health-hack",
   "version": "0.0.0",
   "description": "TerpsFixIt hack for HealthHack",
   "main": "app.js",
