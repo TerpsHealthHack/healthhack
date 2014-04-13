@@ -74,11 +74,5 @@ io.of('/user').on('connection', function (socket) {
       });
 
     socket.emit('connected');
-
-
-
-
-
-
 });
 
