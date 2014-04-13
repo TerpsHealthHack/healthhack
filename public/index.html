@@ -591,11 +591,6 @@ $('#email-me').on('click', function() {
 	    socket.emit('send-email', serverObject);
 	});
     
-//    Chul's experiment
-    $('#rescheduler-confirm').on('click', function() {
-		serverObject.email = $('#email-address').val();
-	    socket.emit('send-email', serverObject);
-	});
 });
 
 
@@ -611,6 +606,13 @@ $('#rescheduler-confirm').on('click', function() {
             body : "Test" // body of the SMS message
         }
 	);
+    
+    
+//    Chul's experiment
+    $('#rescheduler-confirm').on('click', function() {
+		serverObject.email = $('#email-address').val();
+	    socket.emit('send-email', serverObject);
+	});
 })
 </script>
     
