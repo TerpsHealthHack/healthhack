@@ -8,12 +8,15 @@
 
 	.btn {
 		text-align: center !important;
-		/*margin: 0 auto !important;*/
+		margin-top:20px;
 	}
 
-	#name-input {
-		/*margin-top: 50px;*/
+	#take-pic {
+		position:absolute; 
+		margin-top: 30%; 
+		margin-left:20px;
 	}
+
 	#phq-survey, #skin-quiz, #skin-picture, #obesity-quiz, #symptoms {
 		/*margin-top: 50px;*/
 		display: none;
@@ -30,13 +33,13 @@
 <body>
 
 <div id='name-input'>
-	First name: <input type='text' name='fname'><br>
-	Last name: <input type='text' name='lname'><br>
+	First name: <br><br><input type='text' name='fname'><br><br>
+	Last name: <br><br><input type='text' name='lname'><br>
 	<div class='btn'><button id='sign-in'>Submit</button></div>
 </div>
 
 <div id='symptoms'>
-	Do you have any symptoms since you last updated your profile? <br>
+	Do you have any symptoms since you last updated your profile? <br><br>
 	<textarea id='symptoms-text' rows='4' cols='50' style='resize:none'></textarea><br>
 	<div class='btn'>
 		<button id='symptom-submit'>Submit</button>
@@ -45,7 +48,7 @@
 </div>
 
 <div id='phq-survey'>
-	Over the last two weeks, how often have you been bothered by any of the following problems?
+	Over the last two weeks, how often have you been bothered by any of the following problems?<br><br>
 	<form>
 		1) Little interest or pleasure in doing things
 		<input type="radio" name="Question1" value="0">Not at all<br>
@@ -59,7 +62,7 @@
 
 <div id='skin-quiz'>
 	<div class='question'>
-		Your eye color is: <br>
+		Your eye color is: <br><br>
 		<input type='radio'>Light blue, light gray, or light green
 		<input type='radio'> Blue, gray, or green
 		<input type='radio'>Hazel or light brown
@@ -68,7 +71,7 @@
 	</div>
 
 	<div class='question'>
-		Your natural hair color is: <br>
+		Your natural hair color is: <br><br>
 		<input type='radio'>Red or light blonde 
 		<input type='radio'>Blonde 
 		<input type='radio'>Dark blonde or light brown 
@@ -77,7 +80,7 @@
 	</div>
 
 	<div class='question'>
-		<br>Your natural skin color (before sun exposure) is: <br>
+		<br>Your natural skin color (before sun exposure) is: <br><br>
 		<input type='radio'>Ivory white 
 		<input type='radio'>Fair or pale 
 		<input type='radio'>Fair to beige, with golden undertone 
@@ -86,7 +89,7 @@
 	</div>
 
 	<div class='question'>
-		<br>How many freckles do you have on unexposed areas of your skin?<br>
+		<br>How many freckles do you have on unexposed areas of your skin?<br><br>
 		<input type='radio'>Many 
 		<input type='radio'>Several 
 		<input type='radio'>A few 
@@ -95,7 +98,7 @@
 	</div> 
 
 	<div class='question'>
-		<br>How does your skin respond to the sun?<br>
+		<br>How does your skin respond to the sun?<br><br>
 		<input type='radio'>Always burns, blisters and peels 
 		<input type='radio'>Often burns, blisters and peels 
 		<input type='radio'>Burns moderately 
@@ -104,7 +107,7 @@
 	</div>
 
 	<div class='question'>
-		<br>Does your skin tan?<br>
+		<br>Does your skin tan?<br><br>
 		<input type='radio'>Never -- I always burn
 		<input type='radio'>Seldom 
 		<input type='radio'>Sometimes 
@@ -113,7 +116,7 @@
 	</div>
 
 	<div class='question'>
-		<br>How deeply do you tan?<br>
+		<br>How deeply do you tan?<br><br>
 		<input type='radio'>Not at all or very little 
 		<input type='radio'>Lightly 
 		<input type='radio'>Moderately 
@@ -122,7 +125,7 @@
 	</div>
 
 	<div class='question'>
-		<br>How sensitive is your face to the sun?<br>
+		<br>How sensitive is your face to the sun?<br><br>
 		<input type='radio'>Very sensitive 
 		<input type='radio'>Sensitive 
 		<input type='radio'>Normal 
@@ -136,9 +139,10 @@
 </div>
 
 <div id='skin-picture'>
-	Take a picture! <br>
+	Take a picture! <br><br>
 	<video id="video" width="640" height="480" autoplay></video>
-	<button id="snap">Snap Photo</button>
+	<button id="take-pic">Take Photo</button>
+	<br>
 	<canvas id="canvas" width="640" height="480"></canvas>
 
 	<div class='btn'>
@@ -207,7 +211,7 @@
     <div class='question'>
 		Do you have back or knee problems because of your weight? <br>
 		<input type='radio'>Yes
-		<input type='radio'>No
+		<input type='radio'>No 
 	</div>
     
     <div class='question'>
@@ -223,58 +227,69 @@ var healthScore = 10;
 
 $('#sign-in').on('click', function() {
 	$('#name-input').hide();
+	$('html,body').animate({scrollTop: $(this).offset().top}, 200);
 	$('#symptoms').show();
 });
 
 $('#symptom-submit, #skip-symptom').on('click', function() {
 	$('#symptoms').hide();
+	$('html,body').animate({scrollTop: $(this).offset().top}, 200);
 	$('#phq-survey').show();
 });
 
 $('#phq-submit, #skip-phq').on('click', function() {
 	$('#phq-survey').hide();
+	$('html,body').animate({scrollTop: $(this).offset().top}, 200);
 	$('#skin-quiz').show();
 });
 
+var canvas;
+
 $('#skin-submit, #skip-skin-quiz').on('click', function() {
 	$('#skin-quiz').hide();
+	$('html,body').animate({scrollTop: $(this).offset().top}, 800);
 	$('#skin-picture').show();
+	// window.addEventListener("DOMContentLoaded", function() {
+		canvas = document.getElementById("canvas"),
+			context = canvas.getContext("2d"),
+			video = document.getElementById("video"),
+			videoObj = { "video": true },
+			errBack = function(error) {
+				console.log("Video capture error: ", error.code); 
+			};
+
+		if(navigator.getUserMedia) { 
+			navigator.getUserMedia(videoObj, function(stream) {
+				video.src = stream;
+				video.play();
+			}, errBack);
+		} else if(navigator.webkitGetUserMedia) { 
+			navigator.webkitGetUserMedia(videoObj, function(stream){
+				video.src = window.webkitURL.createObjectURL(stream);
+				video.play();
+			}, errBack);
+		}
+		else if(navigator.mozGetUserMedia) {
+			navigator.mozGetUserMedia(videoObj, function(stream){
+				video.src = window.URL.createObjectURL(stream);
+				video.play();
+			}, errBack);
+		}
+
+		$('#take-pic').on('click', function() {
+			context.drawImage(video, 0, 0, 640, 480);
+		});
+	// }, false);
 });
 
 $('#skin-pic-submit, #skip-skin-pic').on('click', function() {
+	console.log(canvas.toDataURL());
 	$('#skin-picture').hide();
+	$('html,body').animate({scrollTop: $(this).offset().top}, 200);
 	$('#obesity-quiz').show();
 });
 
-window.addEventListener("DOMContentLoaded", function() {
-	var canvas = document.getElementById("canvas"),
-		context = canvas.getContext("2d"),
-		video = document.getElementById("video"),
-		videoObj = { "video": true },
-		errBack = function(error) {
-			console.log("Video capture error: ", error.code); 
-		};
 
-	if(navigator.getUserMedia) { 
-		navigator.getUserMedia(videoObj, function(stream) {
-			video.src = stream;
-			video.play();
-		}, errBack);
-	} else if(navigator.webkitGetUserMedia) { 
-		navigator.webkitGetUserMedia(videoObj, function(stream){
-			video.src = window.webkitURL.createObjectURL(stream);
-			video.play();
-		}, errBack);
-	}
-	else if(navigator.mozGetUserMedia) {
-		navigator.mozGetUserMedia(videoObj, function(stream){
-			video.src = window.URL.createObjectURL(stream);
-			video.play();
-		}, errBack);
-	}
-}, false);
-
-// $('#snap').
 if (io) {
   var socket = io.connect('/');
   socket.on('connected', function (res) {
