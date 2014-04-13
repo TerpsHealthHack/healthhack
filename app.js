@@ -13,8 +13,6 @@ app.use(express.static(__dirname + '/public'));
 var mongoURL = process.env.MONGOHQ_URL;
 
 
-
-
 io.sockets.on('connection', function (socket) {
 	MongoClient.connect(mongoURL, function(err, db) {
 	  if(!err) {
@@ -22,10 +20,11 @@ io.sockets.on('connection', function (socket) {
 	  } 
 	  socket.on('query', function(query) {
 	  	console.log('got a query!');
-		  var patients = db.collection('patients');
-		  patients.find({'fname' : query.fname, 'lname' : query.lname}).toArray(function(err, items) {
-		  	console.log(items);
-		  });
+		var patients = db.collection('patients');
+		patients.find({'fname' : query.fname, 'lname' : query.lname}).toArray(function(err, items) {
+			socket.emit('query-response', items);
+		});
+
 	  });
 	});
     socket.on('send email', function(email) {

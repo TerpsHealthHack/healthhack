@@ -518,6 +518,10 @@ $('#obesity-submit, #skip-obesity').on('click', function() {
 	$('#results').show();
 });
 
+$('#submit-to-doctor').on('click', function() {
+	socket.emit('submit-to-doc', "THISISWHATIMSENDING");
+});
+
 </script>
     
 <script>
