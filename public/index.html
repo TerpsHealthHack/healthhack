@@ -11,6 +11,7 @@
 <script src='/foundation/js/foundation/foundation.js'></script>
 <script src='/foundation/js/foundation/foundation.reveal.js'></script>
 <div id='name-input'>
+	<h1 style='text-align:center;margin-bottom:50px'>Virtual Waiting Room</h1>
 	<h4>First name:</h4> <input type='text' name='fname'><br>
 	<h4>Last name:</h4><input type='text' name='lname'><br>
 	<div class='btn'><button id='sign-in'>Submit</button></div>
@@ -523,8 +524,10 @@ $('#phq-submit, #skip-phq').on('click', function() {
 	var sum = 0;
 	for (var i = 1; i <= 10; i++) {
 		var currVal = $('input[name="radios' + i + '"]:checked').val();
-		if (!currVal) {
+		if (!currVal || currVal == 1) {
 			currVal = 0;
+		} else {
+			currVal == 1
 		}
 		sum += parseInt(currVal);
 	}
