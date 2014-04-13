@@ -88,6 +88,7 @@ io.of('/user').on('connection', function (socket) {
     var client = require('twilio')('AC554454875ef2761dfd97bf9f4d438baa', 'c2af4f4d0f28090ead35c5b0b4fc8a16');
 
     socket.on('twilio-sms', function(sms) {
+        console.log(sms);
         client.sendMessage({
             to : sms.to, // Any number Twilio can deliver to
             from : sms.from, // A number you bought from Twilio and can use for outbound communication
