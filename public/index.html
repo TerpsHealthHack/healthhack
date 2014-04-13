@@ -10,12 +10,6 @@
 		margin-top:20px;
 	}
 
-	#take-pic {
-		position:absolute; 
-		margin-top: 30%; 
-		margin-left:20px;
-	}
-
 	#phq-survey, #skin-quiz, #skin-picture, #obesity-quiz, #symptoms, #results, #previous-input {
 		display: none;
 	}
@@ -93,9 +87,10 @@ tr {
     height:80px;
 }
 
-table > tbody > tr:first-child > td:first-child {
-	width:200px;
+td:nth-child(n+2) {
+    width: 350px;
 }
+
 </style>
 
 <link rel='stylesheet' type='text/css' href='foundation/css/foundation.css'>
@@ -284,7 +279,7 @@ table > tbody > tr:first-child > td:first-child {
         <tr>
             <td><div class='numberCircle'>1</div></td>
             <td>Your eye color is: </td>
-            <td><input type='radio' id="radio41" name="radios11" value="0">
+            <td><div style='width:800px'><input type='radio' id="radio41" name="radios11" value="0">
                 <label for="radio41">Light blue, light gray, or light green</label>
             <input type='radio' id="radio42" name="radios11" value="0"> 
                 <label for="radio42">Blue, gray, or green</label>
@@ -292,83 +287,82 @@ table > tbody > tr:first-child > td:first-child {
                 <label for="radio43">Hazel or light brown</label>
             <input type='radio' id="radio44" name="radios11" value="0">
                 <label for="radio44">Dark brown</label>
-            <input type='radio' id="radio45" name="radios11" value="0">
-                <label for="radio45">Brownish black</label>
+            </div>
                 </td>
         </tr>
         
         <tr>
             <td><div class='numberCircle'>2</div></td>
             <td>Your natural hair color is: </td>
-            <td><input type='radio' id="radio46" name="radios12" value="0">
+            <td><div style='width:800px'><input type='radio' id="radio46" name="radios12" value="0">
                 <label for="radio46">Red or light blonde</label>
             <input type='radio' id="radio47" name="radios12" value="0"> 
                 <label for="radio47">Blonde</label>
             <input type='radio' id="radio48" name="radios12" value="0">
-                <label for="radio48">Dark blonde or light brown</label>
+                <label for="radio48">Light brown</label>
             <input type='radio' id="radio49" name="radios12" value="0">
                 <label for="radio49">Dark brown</label>
             <input type='radio' id="radio50" name="radios12" value="0">
                 <label for="radio49">Black</label>
-            </td>
+            </div></td>
         </tr>
         
         <tr>
             <td><div class='numberCircle'>3</div></td>
             <td>Your natural skin color (before sun exposure) is: </td>
-            <td><input type='radio' id="radio51" name="radios13" value="5">
+            <td><div style='width:800px'><input type='radio' id="radio51" name="radios13" value="5">
                 <label for="radio51">Ivory white </label>
             <input type='radio' id="radio42" name="radios13" value="4"> 
-                <label for="radio52">Fair or pale</label>
+                <label for="radio52">Fair/pale</label>
             <input type='radio' id="radio53" name="radios13" value="3">
-                <label for="radio53">Fair to beige, with golden undertone</label>
+                <label for="radio53">Fair to beige</label>
             <input type='radio' id="radio54" name="radios13" value="2">
                 <label for="radio54">Olive or light brown</label>
             <input type='radio' id="radio55" name="radios13" value="1">
                 <label for="radio55">Dark brown or black</label>
-            </td>
+            </div></td>
         </tr>
    
         <tr>
             <td><div class='numberCircle'>4</div></td>
             <td>How many freckles do you have on unexposed areas of your skin? </td>
-            <td><input type='radio' id="radio56" name="radios14" value="5">
+            <td><div style='width:800px'><input type='radio' id="radio56" name="radios14" value="5">
                 <label for="radio56">Many </label>
-            </td>
-            <td><input type='radio' id="radio57" name="radios14" value="4"> 
+            
+            <input type='radio' id="radio57" name="radios14" value="4"> 
                 <label for="radio57">Several</label>
-            </td>
-            <td><input type='radio' id="radio58" name="radios14" value="3">
+            
+            <input type='radio' id="radio58" name="radios14" value="3">
                 <label for="radio58">A few</label>
-            </td>
-            <td><input type='radio' id="radio59" name="radios14" value="2">
+            
+            <input type='radio' id="radio59" name="radios14" value="2">
                 <label for="radio59">Very few</label>
             </td>
             <td><input type='radio' id="radio60" name="radios14" value="1">
                 <label for="radio60">None</label>
-            </td>
+            </div></td>
         </tr>
 
         <tr>
             <td><div class='numberCircle'>5</div></td>
             <td>How does your skin respond to the sun? </td>
-            <td><input type='radio' id="radio61" name="radios15" value="5">
-                <label for="radio61">Always burns, blisters and peels </label>
+            <td><div style='width:800px'><input type='radio' id="radio61" name="radios15" value="5">
+                <label for="radio61">Always burns/blisters </label>
             <input type='radio' id="radio62" name="radios15" value="4"> 
-                <label for="radio62">Often burns, blisters and peels</label>
+                <label for="radio62">Often burns</label>
             <input type='radio' id="radio63" name="radios15" value="3">
                 <label for="radio63">Burns moderately</label>
             <input type='radio' id="radio64" name="radios15" value="2">
-                <label for="radio64">Burns rarely, if at all</label>
+                <label for="radio64">Burns rarely</label>
             <input type='radio' id="radio65" name="radios15" value="1">
                 <label for="radio65">Never burns</label>
-            </td>
+            </div></td>
         </tr>
 
         <tr>
             <td><div class='numberCircle'>6</div></td>
             <td>Does your skin tan? </td>
-            <td><input type='radio' id="radio66" name="radios16" value="5">
+            <td><div style='width:800px'><input type='radio' id="radio66" name="radios16" value="5">
                 <label for="radio66">Never -- I always burn </label>
             <input type='radio' id="radio67" name="radios16" value="4"> 
                 <label for="radio67">Seldom</label>
@@ -378,13 +372,13 @@ table > tbody > tr:first-child > td:first-child {
                 <label for="radio69">Often</label>
             <input type='radio' id="radio70" name="radios16" value="1">
                 <label for="radio70">Always</label>
-            </td>
+            </div></td>
         </tr>
 
         <tr>
             <td><div class='numberCircle'>7</div></td>
             <td>How deeply do you tan?</td>
-            <td><input type='radio' id="radio71" name="radios17" value="5">
+            <td><div style='width:800px'><input type='radio' id="radio71" name="radios17" value="5">
                 <label for="radio71">My skin is naturally black </label>
             <input type='radio' id="radio72" name="radios17" value="4"> 
                 <label for="radio72">Deeply</label>
@@ -394,13 +388,13 @@ table > tbody > tr:first-child > td:first-child {
                 <label for="radio74">Lightly</label>
             <input type='radio' id="radio75" name="radios17" value="1">
                 <label for="radio75">Not at all or very dark</label>
-            </td>
+            </div></td>
         </tr>
 
         <tr>
             <td><div class='numberCircle'>8</div></td>
             <td>How sensitive is your face to the sun? </td>
-            <td><input type='radio' id="radio76" name="radios18" value="5">
+            <td><div style='width:800px'><input type='radio' id="radio76" name="radios18" value="5">
                 <label for="radio76">Very sensitive </label>
             <input type='radio' id="radio77" name="radios18" value="4"> 
                 <label for="radio77">Sensitive</label>
@@ -410,7 +404,7 @@ table > tbody > tr:first-child > td:first-child {
                 <label for="radio79">Resistant</label>
             <input type='radio' id="radio80" name="radios18" value="1">
                 <label for="radio80">Very resistant/Never had a problem</label>
-            </td>
+            </div></td>
         </tr>
     </table>
 
@@ -422,8 +416,8 @@ table > tbody > tr:first-child > td:first-child {
 
 <div id='skin-picture'>
 	<h4>Take a picture!</h4>
+	<div class='btn'><button id="take-pic">Take Photo</button></div>
 	<video id="video" width="640" height="480" autoplay></video>
-	<button id="take-pic">Take Photo</button>
 	<br>
 	<canvas id="canvas" width="640" height="480"></canvas>
 
@@ -438,63 +432,78 @@ table > tbody > tr:first-child > td:first-child {
         <tr>
             <td><div class='numberCircle'>1</div></td>
             <td>Do you exercise less than three times a week? </td>
-            <td><input type='radio' id="radio_obesity_1_yes" name="radios_obesity_1" value="1">
+            <td><div style='width:800px'><input type='radio' id="radio_obesity_1_yes" name="radios_obesity_1" value="1">
                 <label for="radio_obesity_1_yes">Yes </label>
             <input type='radio' id="radio_obesity_1_no" name="radios_obesity_1" value="0"> 
                 <label for="radio_obesity_1_no">No</label>
-            </td>
+            </div></td>
         </tr>
     
         <tr>
             <td><div class='numberCircle'>2</div></td>
             <td>What's your height?</td>
-            <td><input type='text' id="feet" size="2" placeholder="e.g. 5"> feet
-                <input type='text' id="inches" size="5" placeholder="e.g. 10"> inches
-            </td>
-        </div>
+            <td><div style='width:800px'><input type='text' id="feet" size="2" placeholder="e.g. 5" style='width:70px; display:inline'> feet  
+                <input type='text' id="inches" style='width:70px; display: inline' size="5" placeholder="e.g. 10"> inches
+            </div></td>
+        </tr>
 		
     
         <tr>
             <td><div class='numberCircle'>3</div></td>
-            What's your weight? <br>
-            <td><input type='text' id='weight' size='5' placeholder='e.g. 150'> pounds
-                </td>
-        </div>
-    
-    <table><tr><td>Sum:</td><td><div id="result">N/A</div></td></tr></table>
-    <input type=button value='Calculate My BMI' onclick="calculate()" />
-    
-    <hr>
-    
-        <tr>
-            <td><div class='numberCircle'>4</div></td>
-            <td>Do you have a family history of heart disease, diabetes, obesity or hypertension? </td>
-            <td><input type='radio' id="radio_obesity_2_yes" name="radios_obesity_2" value="1">
-                <label for="radio_obesity_1_yes">Yes </label>
-            <input type='radio' id="radio_obesity_2_no" name="radios_obesity_2" value="0"> 
-                <label for="radio_obesity_1_no">No</label>
-            </td>
+            <td>What's your weight? </td>
+            <td><div style='width:800px'><input type='text' style='width:85px; display: inline' id='weight' size='5' placeholder='e.g. 150'> pounds
+            </div></td>
         </tr>
     
-    <div class='question'>
-		Do you have a family history of heart disease, diabetes, obesity or hypertension? <br>
-		<input type='radio'>Yes
-		<input type='radio'>No
-	</div>
+    <tr>
+    	<td>Sum:</td>
+    	<td><button class='btn' style='font-color:white' value='Calculate My BMI' onclick="calculate()" />Calculate</button></td>
+    	<td><div style='width:800px' id='result'>N/A</div></td>
+    </tr>
     
-    <div class='question'>
-		Do you crave sweets and carbohydrates? <br>
-		<input type='radio'>Yes
-		<input type='radio'>No
-	</div>
+    <tr>
+        <td><div class='numberCircle'>4</div></td>
+        <td>Do you have a family history of heart disease, diabetes, obesity or hypertension? </td>
+        <td><div style='width:800px'><input type='radio' id="radio_obesity_2_yes" name="radios_obesity_2" value="1">
+            <label for="radio_obesity_2_yes">Yes </label>
+        <input type='radio' id="radio_obesity_2_no" name="radios_obesity_2" value="0"> 
+            <label for="radio_obesity_2_no">No</label>
+        </div></td>
+    </tr>
     
-    <div class='question'>
-		Do you have difficulty losing weight? <br>
-		<input type='radio'>Yes
-		<input type='radio'>No
-	</div>
+    <tr>
+    	<td><div class='numberCircle'>5</div></td>
+		<td>Do you have a family history of heart disease, diabetes, obesity or hypertension? </td>
+		<td><div style='width:800px'>
+		<input type='radio' id='radio_obesity_3_yes' name='radio_obesity_3' value='1'>
+		<label for='radio_obesity_3_yes'>Yes</label>
+		<input type='radio' id='radio_obesity_3_no' name='radio_obesity_3' value='1'>
+		<label for='radio_obesity_3_no'>No</label>
+		</div></td>
+	</tr>
     
-    <div class='question'>
+    <tr>
+    	<td><div class='numberCircle'>6</div></td>
+		<td>Do you crave sweets and carbohydrates? </td>
+		<td><div style='width:800px'>
+		<input type='radio' id='radio_obesity_4_yes' name='radio_obesity_4' value='1'>
+		<label for='radio_obesity_4_yes'>Yes</label>
+		<input type='radio' id='radio_obesity_4_no' name='radio_obesity_4' value='1'>
+		<label for='radio_obesity_4_no'>No</label>
+		</div></td>
+	</tr>
+
+    <tr>
+    	<td><div class='numberCircle'>7</div></td>
+		<td>Do you have difficulty losing weight? </td>
+		<td><div style='width:800px'>
+		<input type='radio' id='radio_obesity_5_yes' name='radio_obesity_5' value='1'>
+		<label for='radio_obesity_5_yes'>Yes</label>
+		<input type='radio' id='radio_obesity_5_no' name='radio_obesity_5' value='1'>
+		<label for='radio_obesity_4_no'>No</label>
+		</div></td>
+	</tr>
+<!--     <div class='question'>
 		Do you struggle daily with fatigue? <br>
 		<input type='radio'>Yes
 		<input type='radio'>No
@@ -510,8 +519,8 @@ table > tbody > tr:first-child > td:first-child {
 		Do you experience erectile dysfunction (ED) or female dysfunction? <br>
 		<input type='radio'>Yes
 		<input type='radio'>No
-	</div>
-
+	</div> -->
+</table>
 	<div class='btn'>
 		<button id='obesity-submit'>Submit</button>
 		<button id='skip-obesity'>Skip</button>
