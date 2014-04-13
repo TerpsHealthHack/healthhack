@@ -53,21 +53,7 @@ io.of('/user').on('connection', function (socket) {
 		});
 	  });
 	});
-<<<<<<< HEAD
-    socket.on('send email', function(email) {
-        // mail({
-        //     from: "TerpsHackIt@umd.edu", 
-        //     to: email.toEmail, 
-        //     subject: "HERE'S YOUR SCORE!", 
-        //     text: "Your depression numba is: " + email.healthScore
-        // });
-    });
 
-    socket.on('submit-to-doc', function(query) {
-    	eventEmitter.emit('alertadmins');
-    });
-
-=======
 	socket.on('send-email', function(email) {
 	  	console.log(email);
         mail({
@@ -82,7 +68,7 @@ io.of('/user').on('connection', function (socket) {
             	email.newSymptoms
         });
       });
->>>>>>> 4fe0d41f9fb2119eac3390a0320203778bf87800
+
     socket.emit('connected');
 
 
@@ -92,14 +78,3 @@ io.of('/user').on('connection', function (socket) {
 
 });
 
-<<<<<<< HEAD
-=======
-    // ADMIN PAGE HANDLING ------------------------------
-    /*
-    http://stackoverflow.com/questions/8812505/working-with-routes-in-express-js-and-socket-io-and-maybe-node-in-general
-    */
-    io.of('/admin').on('connection',function(socket) {
-    	socket.emit('connected','ITWORKS');
-
-    });
->>>>>>> 4fe0d41f9fb2119eac3390a0320203778bf87800
