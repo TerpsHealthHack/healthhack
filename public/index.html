@@ -437,6 +437,45 @@
 		<button id='submit-to-doctor'>Submit to Doctor</button>
 		<button id='skip'>Skip</button>
 	</div>
+    
+    </br></hr></br>
+    
+    <div class='appointment'>
+        <h3>Since you have completed the questionnaire, your estimated waiting time at the hospital has been reduced to <b>10</b> minutes.</h3>
+        <h3>We have empty time slots before and after your scheduled appointment. Would you like to take advantage of this opportunity?</h3>
+    </div>
+
+    <div id="rescheduler" class="reveal-modal" data-reveal>
+      <h5>Available slots</h5>
+      <table align="center" width="500px" margin="0 auto">
+        <tr>
+            <td><div style='width:500px'><input type='radio' id="slot_before" name="timeslot" value="-1">
+                <label for="slot_before">3:30 PM</label>
+            <input type='radio' id="slot_current" name="timeslot" value="0"> 
+                <label for="slot_current">Don't Change - 4:00 PM</label>
+            <input type='radio' id="slot_after" name="timeslot" value="1"> 
+                <label for="slot_after">4:45 PM</label>
+            </div></td>
+        </tr>
+      </table>
+        
+      <h5>Your phone number to receive SMS confirmation (optional)</h5>
+	  <input type='text' id='phone-number'>
+	  <div class='btn'>
+	  	<button id='submit-number' class='close-reveal-modal'>Submit</button>
+	  </div>
+        
+	  <h5>Your email address to receive confirmation</h5>
+	  <input type='text' id='email-address'>
+	  <div class='btn'>
+	  	<button id='rescheduler-confirm' class='close-reveal-modal'>Submit</button>
+	  </div>
+	</div>
+
+    <div class='btn'>
+		<button id='availability' class='open-modal' data-reveal-id='rescheduler'>See new availability</button>
+	</div>
+
 </div>
 
 <script>
@@ -545,6 +584,12 @@ $('#obesity-submit, #skip-obesity').on('click', function() {
 
 $('#email-me').on('click', function() {
 	$('#submit-email').on('click', function() {
+		serverObject.email = $('#email-address').val();
+	    socket.emit('send-email', serverObject);
+	});
+    
+//    Chul's experiment
+    $('#rescheduler-confirm').on('click', function() {
 		serverObject.email = $('#email-address').val();
 	    socket.emit('send-email', serverObject);
 	});
