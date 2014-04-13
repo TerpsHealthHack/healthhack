@@ -1,99 +1,8 @@
 <html>
 <head>
-<style>
-	body {
-		margin: 5% 15% 0 15% !important;
-	}
-
-	.btn {
-		text-align: center !important;
-		margin-top:20px;
-	}
-
-	#phq-survey, #skin-quiz, #skin-picture, #obesity-quiz, #symptoms, #results, #previous-input {
-		display: none;
-	}
-
-	input[type=radio], input[type=checkbox] {
-		display:none;
-	}
-
-	input[type=radio] + label, input[type=checkbox] + label {
-		display:inline-block;
-		margin:-2px;
-		padding: 4px 12px;
-		margin-bottom: 0;
-		font-size: 14px;
-		line-height: 20px;
-		color: #3090C7;
-		text-align: center;
-		text-shadow: 0 1px 1px rgba(255,255,255,0.75);
-		vertical-align: middle;
-		cursor: pointer;
-		background-color: #F8F8F8;
-		border: 0px solid #ccc;
-		border-color: #e6e6e6 #e6e6e6 #bfbfbf;
-		border-color: rgba(0,0,0,0.1) rgba(0,0,0,0.1) rgba(0,0,0,0.25);
-		border-bottom-color: #b3b3b3;
-	}
-
-	 input[type=radio]:checked + label, input[type=checkbox]:checked + label{
-		   background-image: none;
-		outline: 0;
-			background-color:#3090C7;
-			color:#F8F8F8;
-	}
-
-
-.numberCircle {
-    border-radius: 50%;
-    -webkit-border-radius: 50%;
-    width: 20px;
-    height: 20px;
-    padding: 4px;
-    line-height:10px;
-    
-    background: #fff;
-    border: 1.9px solid #B8B8B8;
-    color: #B8B8B8;
-    text-align: center;
-    
-    font: 17px Arial, sans-serif;
-}
-
-	.numberCircle {
-	    border-radius: 50%;
-	    width: 20px;
-	    height: 20px;
-	    padding: 8px;
-	    
-	    background: #fff;
-	    border: 2px solid #B8B8B8;
-	    color: #B8B8B8;
-	    text-align: center;
-	    
-	    font: 20px Arial, sans-serif;
-	}
-
-table
-{
-border-collapse:collapse;
-table-layout: fixed;
-width:800px;
-margin-left:-100px;
-padding:0 !important;
-}
-tr {
-    height:80px;
-}
-
-td:nth-child(n+2) {
-    width: 350px;
-}
-
-</style>
 
 <link rel='stylesheet' type='text/css' href='foundation/css/foundation.css'>
+<link rel='stylesheet' type='text/css' href='custom.css'>
 <script src='http://code.jquery.com/jquery.min.js' type='text/javascript'></script>
 <script src='../socket.io/socket.io.js'></script>
 </head>
@@ -503,23 +412,7 @@ td:nth-child(n+2) {
 		<label for='radio_obesity_4_no'>No</label>
 		</div></td>
 	</tr>
-<!--     <div class='question'>
-		Do you struggle daily with fatigue? <br>
-		<input type='radio'>Yes
-		<input type='radio'>No
-	</div>
-    
-    <div class='question'>
-		Do you have back or knee problems because of your weight? <br>
-		<input type='radio'>Yes
-		<input type='radio'>No 
-	</div>
-    
-    <div class='question'>
-		Do you experience erectile dysfunction (ED) or female dysfunction? <br>
-		<input type='radio'>Yes
-		<input type='radio'>No
-	</div> -->
+	
 </table>
 	<div class='btn'>
 		<button id='obesity-submit'>Submit</button>
