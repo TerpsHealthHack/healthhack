@@ -360,15 +360,19 @@ tr {height:80px;}
 		<input type='radio'>No
 	</div>
     
-        <div class='question'>
+    <div class='question'>
 		What's your height? <br>
-		<input type='text' name="height">
+		<input type='text' id="feet" size="2" placeholder="e.g. 5"> feet
+        <input type='text' id="inches" size="5" placeholder="e.g. 10"> inches
 	</div>
     
     <div class='question'>
 		What's your weight? <br>
-		<input type='text' name="weight">
+		<input type='text' id='weight' size='5' placeholder='e.g. 150'> pounds
 	</div>
+    
+    <table><tr><td>Sum:</td><td><div id="result">N/A</div></td></tr></table>
+    <input type=button value='Calculate My BMI' onclick="calculate()" />
     
     <div class='question'>
 		Do you have a waist measurement of 40 inches or more if male, or 35 inches or more if female? <br>
@@ -383,7 +387,6 @@ tr {height:80px;}
 		<input type='radio'>Yes
 		<input type='radio'>No
 	</div>
-    
     
     <div class='question'>
 		Do you have a family history of heart disease, diabetes, obesity or hypertension? <br>
